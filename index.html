@@ -1,0 +1,1065 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, viewport-fit=cover">
+<title>Коммуналка</title>
+<style>
+  :root {
+    --primary: #1A6B3C;
+    --primary-light: #E8F5EE;
+    --primary-mid: #2E8B57;
+    --accent: #F4A023;
+    --accent-light: #FEF3E2;
+    --danger: #C0392B;
+    --danger-light: #FDEDEC;
+    --text: #1a1a1a;
+    --text-muted: #666;
+    --text-hint: #999;
+    --bg: #F5F5F0;
+    --card: #FFFFFF;
+    --border: #E0E0D8;
+    --border-strong: #C8C8C0;
+    --radius: 16px;
+    --radius-sm: 10px;
+    --shadow: 0 2px 12px rgba(0,0,0,0.08);
+    --font: 'Segoe UI', system-ui, -apple-system, sans-serif;
+  }
+  @media (prefers-color-scheme: dark) {
+    :root {
+      --primary: #3EAA6A;
+      --primary-light: #0D2E1C;
+      --primary-mid: #3EAA6A;
+      --accent: #F4A023;
+      --accent-light: #2A1F0A;
+      --danger: #E74C3C;
+      --danger-light: #2C0E0C;
+      --text: #ECECEC;
+      --text-muted: #AAA;
+      --text-hint: #777;
+      --bg: #121212;
+      --card: #1E1E1E;
+      --border: #2E2E2E;
+      --border-strong: #444;
+      --shadow: 0 2px 12px rgba(0,0,0,0.3);
+    }
+  }
+  * { box-sizing: border-box; margin: 0; padding: 0; -webkit-tap-highlight-color: transparent; }
+  input[type=number]::-webkit-inner-spin-button,
+  input[type=number]::-webkit-outer-spin-button { -webkit-appearance:none; margin:0; }
+  input[type=number] { -moz-appearance:textfield; }
+  html { font-size: 18px; }
+  body { font-family: var(--font); background: var(--bg); color: var(--text); min-height: 100vh; min-height: 100dvh; }
+
+  /* LAYOUT */
+  .app { max-width: 480px; margin: 0 auto; min-height: 100vh; min-height: 100dvh; position: relative; }
+  .screen { display: none; flex-direction: column; min-height: 100vh; min-height: 100dvh; padding-bottom: calc(80px + env(safe-area-inset-bottom)); }
+  .screen.active { display: flex; }
+  .top-bar { padding: 20px 20px 12px; padding-top: calc(20px + env(safe-area-inset-top)); padding-left: calc(20px + env(safe-area-inset-left)); padding-right: calc(20px + env(safe-area-inset-right)); display: flex; align-items: center; gap: 12px; }
+  .top-bar h1 { font-size: 1.5rem; font-weight: 700; flex: 1; }
+  .content { flex: 1; padding: 0 16px; padding-left: calc(16px + env(safe-area-inset-left)); padding-right: calc(16px + env(safe-area-inset-right)); }
+
+  /* NAV */
+  .nav { position: fixed; bottom: 0; left: 50%; transform: translateX(-50%); width: 100%; max-width: 480px; background: var(--card); border-top: 1px solid var(--border); display: flex; z-index: 100; padding-bottom: env(safe-area-inset-bottom); padding-left: env(safe-area-inset-left); padding-right: env(safe-area-inset-right); }
+  .nav-btn { flex: 1; display: flex; flex-direction: column; align-items: center; justify-content: center; padding: 10px 4px 14px; gap: 4px; background: none; border: none; cursor: pointer; color: var(--text-hint); font-size: 0.65rem; font-family: var(--font); transition: color 0.15s; }
+  .nav-btn.active { color: var(--primary); }
+  .nav-icon { font-size: 1.5rem; line-height: 1; }
+
+  /* CARDS */
+  .card { background: var(--card); border: 1px solid var(--border); border-radius: var(--radius); padding: 18px; margin-bottom: 12px; box-shadow: var(--shadow); }
+  .card-header { display: flex; align-items: center; justify-content: space-between; margin-bottom: 12px; }
+  .card-title { font-size: 1.1rem; font-weight: 700; }
+  .card-subtitle { font-size: 0.8rem; color: var(--text-muted); margin-top: 2px; }
+
+  /* BUTTONS */
+  .btn { display: flex; align-items: center; justify-content: center; gap: 8px; padding: 16px 20px; border-radius: var(--radius-sm); border: none; cursor: pointer; font-family: var(--font); font-size: 1rem; font-weight: 600; transition: all 0.15s; active { transform: scale(0.97); } }
+  .btn:active { transform: scale(0.97); }
+  .btn-primary { background: var(--primary); color: white; width: 100%; }
+  .btn-primary:hover { background: var(--primary-mid); }
+  .btn-secondary { background: var(--primary-light); color: var(--primary); width: 100%; }
+  .btn-danger { background: var(--danger-light); color: var(--danger); }
+  .btn-ghost { background: transparent; color: var(--text-muted); border: 1px solid var(--border-strong); }
+  .btn-sm { padding: 10px 14px; font-size: 0.85rem; border-radius: 8px; }
+  .btn-icon { width: 44px; height: 44px; padding: 0; border-radius: 10px; font-size: 1.2rem; }
+
+  /* INPUTS */
+  .input-group { margin-bottom: 16px; }
+  .input-label { font-size: 0.78rem; font-weight: 700; color: var(--text-muted); text-transform: uppercase; letter-spacing: 0.05em; margin-bottom: 6px; display: block; }
+  .input { width: 100%; padding: 14px 16px; border: 2px solid var(--border); border-radius: var(--radius-sm); font-size: 1.1rem; font-family: var(--font); background: var(--card); color: var(--text); transition: border-color 0.15s; }
+  .input:focus { outline: none; border-color: var(--primary); }
+  .input-big { font-size: 1.6rem; font-weight: 700; text-align: center; padding: 18px; }
+
+
+  /* UTILITIES */
+  .badge { display: inline-flex; align-items: center; gap: 4px; padding: 4px 10px; border-radius: 20px; font-size: 0.75rem; font-weight: 600; }
+  .badge-green { background: var(--primary-light); color: var(--primary); }
+  .badge-amber { background: var(--accent-light); color: #C47E00; }
+  .section-title { font-size: 0.75rem; font-weight: 700; color: var(--text-hint); text-transform: uppercase; letter-spacing: 0.08em; margin: 20px 0 10px; padding: 0 4px; }
+  .divider { height: 1px; background: var(--border); margin: 14px 0; }
+  .row { display: flex; align-items: center; justify-content: space-between; }
+  .empty-state { text-align: center; padding: 48px 24px; color: var(--text-muted); }
+  .empty-state .emoji { font-size: 3rem; margin-bottom: 12px; }
+  .empty-state p { font-size: 1rem; line-height: 1.5; }
+
+  /* APARTMENT CARD */
+  .apt-card { cursor: pointer; transition: border-color 0.15s, box-shadow 0.15s; }
+  .apt-card:hover { border-color: var(--primary); box-shadow: 0 4px 20px rgba(26,107,60,0.12); }
+  .apt-card.selected { border-color: var(--primary); border-width: 2px; }
+  .apt-name { font-size: 1.2rem; font-weight: 700; }
+  .apt-addr { font-size: 0.85rem; color: var(--text-muted); margin-top: 3px; }
+  .accounts-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 8px; margin-top: 12px; }
+  .account-item { background: var(--bg); border-radius: 10px; padding: 10px 12px; }
+  .account-label { font-size: 0.7rem; color: var(--text-muted); font-weight: 600; }
+  .account-number { font-size: 0.95rem; font-weight: 700; margin-top: 3px; font-family: 'Courier New', monospace; letter-spacing: 0.02em; }
+  .copy-btn { margin-top: 6px; background: none; border: none; color: var(--primary); font-size: 0.75rem; cursor: pointer; padding: 2px 0; font-family: var(--font); font-weight: 600; }
+
+  /* SERVICE ICONS */
+  .service-icon { width: 40px; height: 40px; border-radius: 10px; display: flex; align-items: center; justify-content: center; font-size: 1.3rem; flex-shrink: 0; }
+  .icon-gas { background: #FFF0CC; }
+  .icon-water { background: #D6EAF8; }
+  .icon-electric { background: #FEF9E7; }
+  .icon-trash { background: #FDEBD0; }
+
+  /* CALCULATION */
+  .calc-service { display: flex; align-items: center; gap: 12px; padding: 14px 0; border-bottom: 1px solid var(--border); }
+  .calc-service:last-child { border-bottom: none; }
+  .calc-info { flex: 1; }
+  .calc-name { font-weight: 600; }
+  .calc-detail { font-size: 0.8rem; color: var(--text-muted); margin-top: 2px; }
+  .calc-amount { font-size: 1.2rem; font-weight: 700; color: var(--primary); }
+
+  /* TOTAL */
+  .total-bar { background: var(--primary); color: white; border-radius: var(--radius); padding: 18px 20px; display: flex; align-items: center; justify-content: space-between; margin: 16px 0; }
+  .total-label { font-size: 0.9rem; opacity: 0.8; }
+  .total-amount { font-size: 1.8rem; font-weight: 800; }
+
+  /* VOICE */
+  .voice-btn { width: 80px; height: 80px; border-radius: 50%; border: 3px solid var(--primary); background: white; color: var(--primary); font-size: 2rem; cursor: pointer; display: flex; align-items: center; justify-content: center; transition: all 0.15s; margin: 0 auto; }
+  .voice-btn.recording { background: var(--danger); border-color: var(--danger); color: white; animation: pulse 1.2s ease-in-out infinite; }
+  @keyframes pulse { 0%,100% { box-shadow: 0 0 0 0 rgba(192,57,43,0.4); } 50% { box-shadow: 0 0 0 12px rgba(192,57,43,0); } }
+  .voice-result { text-align: center; margin-top: 16px; min-height: 60px; }
+  .voice-number { font-size: 2.5rem; font-weight: 800; color: var(--primary); }
+  .voice-status { font-size: 0.9rem; color: var(--text-muted); margin-top: 4px; }
+
+  /* MODAL */
+  .modal-overlay { position: fixed; inset: 0; background: rgba(0,0,0,0.5); z-index: 200; display: none; align-items: flex-end; justify-content: center; }
+  .modal-overlay.open { display: flex; }
+  .modal { background: var(--card); border-radius: 24px 24px 0 0; padding: 24px 20px 40px; width: 100%; max-width: 480px; max-height: 90vh; overflow-y: auto; }
+  .modal-handle { width: 40px; height: 4px; background: var(--border-strong); border-radius: 2px; margin: 0 auto 20px; }
+  .modal-title { font-size: 1.3rem; font-weight: 800; margin-bottom: 20px; }
+  .modal-actions { display: flex; gap: 10px; margin-top: 20px; }
+
+  /* TABS */
+  .tabs { display: flex; background: var(--bg); border-radius: 12px; padding: 4px; gap: 4px; margin-bottom: 16px; }
+  .tab { flex: 1; padding: 10px 6px; border: none; background: none; border-radius: 9px; font-family: var(--font); font-size: 0.85rem; font-weight: 600; cursor: pointer; color: var(--text-muted); transition: all 0.15s; }
+  .tab.active { background: var(--card); color: var(--text); box-shadow: 0 1px 4px rgba(0,0,0,0.1); }
+
+  /* TARIFF ROW */
+  .tariff-row { display: grid; grid-template-columns: 1fr 140px; align-items: center; gap: 12px; margin-bottom: 10px; }
+  .tariff-row .input { width: 100%; padding: 14px 12px; font-size: 1.1rem; text-align: right; }
+  .tariff-label-text { font-size: 0.9rem; color: var(--text-muted); }
+
+  /* HISTORY */
+  .history-item { display: flex; align-items: center; justify-content: space-between; padding: 12px 0; border-bottom: 1px solid var(--border); }
+  .history-item:last-child { border-bottom: none; }
+  .history-date { font-size: 0.85rem; color: var(--text-muted); }
+  .history-total { font-size: 1.1rem; font-weight: 700; color: var(--primary); }
+
+  /* TOAST */
+  .toast { position: fixed; top: 20px; left: 50%; transform: translateX(-50%); background: var(--text); color: var(--card); padding: 12px 20px; border-radius: 12px; font-size: 0.9rem; font-weight: 600; z-index: 500; opacity: 0; transition: opacity 0.3s; pointer-events: none; white-space: nowrap; }
+  .toast.show { opacity: 1; }
+
+  /* CONFIRM MODAL */
+  .confirm-value { font-size: 3rem; font-weight: 800; text-align: center; color: var(--primary); margin: 12px 0 4px; }
+  .confirm-unit { text-align: center; color: var(--text-muted); font-size: 0.9rem; margin-bottom: 16px; }
+
+  .chip-row { display: flex; gap: 8px; flex-wrap: wrap; margin-top: 6px; }
+  .chip { padding: 8px 14px; border-radius: 20px; border: 2px solid var(--border); background: var(--card); color: var(--text); font-size: 0.85rem; font-weight: 600; cursor: pointer; font-family: var(--font); transition: all 0.15s; }
+  .chip.active { border-color: var(--primary); background: var(--primary-light); color: var(--primary); }
+</style>
+</head>
+<body>
+<div class="app">
+
+  <!-- ===== SCREEN: HOME ===== -->
+  <div class="screen active" id="screen-home">
+    <div class="top-bar">
+      <h1>🏠 Коммуналка</h1>
+      <button class="btn btn-icon btn-secondary" onclick="openAddApt()">➕</button>
+    </div>
+    <div class="content">
+      <div id="apt-list-home"></div>
+      <div id="empty-home" class="empty-state" style="display:none">
+        <div class="emoji">🏢</div>
+        <p>Добавьте квартиру,<br>чтобы начать учёт</p>
+        <br>
+        <button class="btn btn-primary" style="width:auto;padding:14px 28px" onclick="openAddApt()">Добавить квартиру</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- ===== SCREEN: CALCULATE ===== -->
+  <div class="screen" id="screen-calc">
+    <div class="top-bar">
+      <h1>💡 Расчёт</h1>
+    </div>
+    <div class="content">
+      <div id="calc-apt-selector"></div>
+      <div id="calc-body"></div>
+    </div>
+  </div>
+
+  <!-- ===== SCREEN: HISTORY ===== -->
+  <div class="screen" id="screen-history">
+    <div class="top-bar">
+      <h1>📋 История</h1>
+    </div>
+    <div class="content">
+      <div id="history-body"></div>
+    </div>
+  </div>
+
+  <!-- ===== SCREEN: SETTINGS ===== -->
+  <div class="screen" id="screen-settings">
+    <div class="top-bar">
+      <h1>⚙️ Тарифы</h1>
+    </div>
+    <div class="content">
+      <div class="card" style="margin-bottom:12px">
+        <p style="font-size:0.9rem;color:var(--text-muted);line-height:1.5">Измените тарифы, если у вас другие ставки. Расчёты обновятся автоматически.</p>
+      </div>
+      <div id="tariffs-form"></div>
+      <button class="btn btn-primary" onclick="saveTariffs()">💾 Сохранить тарифы</button>
+    </div>
+  </div>
+
+  <!-- NAV -->
+  <nav class="nav">
+    <button class="nav-btn active" data-screen="home" onclick="showScreen('home')">
+      <span class="nav-icon">🏠</span>
+      <span>Квартиры</span>
+    </button>
+    <button class="nav-btn" data-screen="calc" onclick="showScreen('calc')">
+      <span class="nav-icon">💡</span>
+      <span>Расчёт</span>
+    </button>
+    <button class="nav-btn" data-screen="history" onclick="showScreen('history')">
+      <span class="nav-icon">📋</span>
+      <span>История</span>
+    </button>
+    <button class="nav-btn" data-screen="settings" onclick="showScreen('settings')">
+      <span class="nav-icon">⚙️</span>
+      <span>Тарифы</span>
+    </button>
+  </nav>
+
+  <!-- TOAST -->
+  <div class="toast" id="toast"></div>
+
+  <!-- ===== MODAL: ADD/EDIT APT ===== -->
+  <div class="modal-overlay" id="modal-apt">
+    <div class="modal">
+      <div class="modal-handle"></div>
+      <div class="modal-title" id="apt-modal-title">Новая квартира</div>
+      <div class="input-group">
+        <label class="input-label">Название</label>
+        <input class="input" id="apt-name-input" placeholder="Напр: Моя квартира">
+      </div>
+      <div class="input-group">
+        <label class="input-label">Адрес</label>
+        <input class="input" id="apt-addr-input" placeholder="ул. Ленина, д.5, кв.12">
+      </div>
+      <div class="input-group">
+        <label class="input-label">Кол-во жильцов</label>
+        <input class="input" id="apt-people-input" type="number" min="1" max="20" placeholder="2">
+      </div>
+      <div class="input-group">
+        <label class="input-label">Тип объекта</label>
+        <div class="chip-row">
+          <button class="chip active" id="type-apt" onclick="selectPropType('apt')">🏢 Квартира</button>
+          <button class="chip" id="type-house" onclick="selectPropType('house')">🏡 Частный дом</button>
+        </div>
+      </div>
+      <div class="section-title">Лицевые счета</div>
+      <div class="input-group">
+        <label class="input-label">⛽ Газ</label>
+        <input class="input" id="acc-gas" placeholder="Лицевой счёт" style="font-family:monospace;margin-bottom:6px">
+        <input class="input" id="acc-gas-org" placeholder="Название организации" style="font-size:0.95rem">
+      </div>
+      <div class="input-group">
+        <label class="input-label">💧 Водоснабжение</label>
+        <input class="input" id="acc-water" placeholder="Лицевой счёт" style="font-family:monospace;margin-bottom:6px">
+        <input class="input" id="acc-water-org" placeholder="Название организации" style="font-size:0.95rem">
+      </div>
+      <div class="input-group">
+        <label class="input-label">⚡ Электричество</label>
+        <input class="input" id="acc-electric" placeholder="Лицевой счёт" style="font-family:monospace;margin-bottom:6px">
+        <input class="input" id="acc-electric-org" placeholder="Название организации" style="font-size:0.95rem">
+      </div>
+      <div class="input-group">
+        <label class="input-label">🗑️ ТБО (мусор)</label>
+        <input class="input" id="acc-trash" placeholder="Лицевой счёт" style="font-family:monospace;margin-bottom:6px">
+        <input class="input" id="acc-trash-org" placeholder="Название организации" style="font-size:0.95rem">
+      </div>
+      <div class="modal-actions">
+        <button class="btn btn-ghost" style="flex:1" onclick="closeModal('modal-apt')">Отмена</button>
+        <button class="btn btn-primary" style="flex:2" onclick="saveApt()">Сохранить</button>
+      </div>
+      <div id="apt-delete-btn" style="display:none;margin-top:10px">
+        <button class="btn btn-danger" style="width:100%" onclick="deleteApt()">🗑️ Удалить квартиру</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- ===== MODAL: VOICE ===== -->
+  <div class="modal-overlay" id="modal-voice">
+    <div class="modal">
+      <div class="modal-handle"></div>
+      <div class="modal-title">🎤 Голосовой ввод</div>
+      <p style="color:var(--text-muted);font-size:0.9rem;margin-bottom:20px">Нажмите кнопку и назовите число</p>
+      <button class="voice-btn" id="voice-btn" onclick="toggleVoice()">🎤</button>
+      <div class="voice-result">
+        <div class="voice-number" id="voice-number"></div>
+        <div class="voice-status" id="voice-status">Нажмите для записи</div>
+      </div>
+      <div class="modal-actions" id="voice-actions" style="display:none">
+        <button class="btn btn-ghost" style="flex:1" onclick="voiceRetry()">Повторить</button>
+        <button class="btn btn-primary" style="flex:2" onclick="voiceConfirm()">✓ Применить</button>
+      </div>
+      <button class="btn btn-ghost" style="width:100%;margin-top:10px" onclick="closeModal('modal-voice')">Закрыть</button>
+    </div>
+  </div>
+
+  <!-- ===== MODAL: CONFIRM SAVE ===== -->
+  <div class="modal-overlay" id="modal-confirm-save">
+    <div class="modal">
+      <div class="modal-handle"></div>
+      <div class="modal-title">Сохранить расчёт?</div>
+      <div id="confirm-save-body"></div>
+      <div class="modal-actions">
+        <button class="btn btn-ghost" style="flex:1" onclick="closeModal('modal-confirm-save')">Назад</button>
+        <button class="btn btn-primary" style="flex:2" onclick="confirmSave()">📋 Сохранить в историю</button>
+      </div>
+    </div>
+  </div>
+
+</div>
+
+<script>
+// ==================== STATE ====================
+const DEFAULT_TARIFFS = {
+  gas_meter: 6.2,
+  gas_person: 92.41,
+  water_supply: 49.98,
+  water_drain: 29.72,
+  trash_apt: 78.62,
+  trash_house: 91.70,
+  electric: 5.50,
+};
+
+let state = {
+  apartments: [],
+  tariffs: { ...DEFAULT_TARIFFS },
+  history: [],
+  selectedAptId: null,
+  editAptId: null,
+  calcData: {},
+  pendingCalc: null,
+};
+
+let voiceRecognition = null;
+let voiceTarget = null;
+let isRecording = false;
+
+// ==================== STORAGE ====================
+function save() {
+  localStorage.setItem('komnalka_v2', JSON.stringify(state));
+}
+function load() {
+  const d = localStorage.getItem('komnalka_v2');
+  if (d) {
+    try {
+      const loaded = JSON.parse(d);
+      state = { ...state, ...loaded };
+      if (!state.tariffs) state.tariffs = { ...DEFAULT_TARIFFS };
+    } catch(e) {}
+  }
+}
+
+// ==================== NAV ====================
+function showScreen(name) {
+  document.querySelectorAll('.screen').forEach(s => s.classList.remove('active'));
+  document.getElementById('screen-' + name).classList.add('active');
+  document.querySelectorAll('.nav-btn').forEach(b => {
+    b.classList.toggle('active', b.dataset.screen === name);
+  });
+  if (name === 'home') renderHome();
+  if (name === 'calc') renderCalc();
+  if (name === 'history') renderHistory();
+  if (name === 'settings') renderSettings();
+}
+
+// ==================== HOME ====================
+function renderHome() {
+  const list = document.getElementById('apt-list-home');
+  const empty = document.getElementById('empty-home');
+  if (state.apartments.length === 0) {
+    list.innerHTML = '';
+    empty.style.display = 'block';
+    return;
+  }
+  empty.style.display = 'none';
+  list.innerHTML = state.apartments.map(apt => `
+    <div class="card apt-card" onclick="editApt('${apt.id}')">
+      <div class="card-header">
+        <div>
+          <div class="apt-name">${escHtml(apt.name)}</div>
+          <div class="apt-addr">${escHtml(apt.address || 'Адрес не указан')} · ${apt.people || 1} чел. · ${apt.propType === 'house' ? '🏡 Дом' : '🏢 Квартира'}</div>
+        </div>
+        <button class="btn btn-icon btn-ghost" onclick="event.stopPropagation();editApt('${apt.id}')">✏️</button>
+      </div>
+      <div class="accounts-grid">
+        ${renderAccountItem('⛽', 'Газ', apt.accounts?.gas, apt.accounts?.gasOrg)}
+        ${renderAccountItem('💧', 'Водоснабжение', apt.accounts?.water, apt.accounts?.waterOrg)}
+        ${renderAccountItem('🚿', 'Канализация', apt.accounts?.sewer, apt.accounts?.sewerOrg)}
+        ${renderAccountItem('⚡', 'Свет', apt.accounts?.electric, apt.accounts?.electricOrg)}
+        ${renderAccountItem('🗑️', 'ТБО', apt.accounts?.trash, apt.accounts?.trashOrg)}
+      </div>
+    </div>
+  `).join('');
+}
+
+function renderAccountItem(icon, label, number, org) {
+  if (!number) return `
+    <div class="account-item">
+      <div class="account-label">${icon} ${label}</div>
+      <div class="account-number" style="color:var(--text-hint);font-size:0.8rem">не указан</div>
+    </div>`;
+  return `
+    <div class="account-item">
+      <div class="account-label">${icon} ${label}</div>
+      ${org ? `<div style="font-size:0.75rem;color:var(--text-muted);margin-bottom:2px">${escHtml(org)}</div>` : ''}
+      <div class="account-number">${escHtml(number)}</div>
+      <button class="copy-btn" onclick="event.stopPropagation();copyText('${escHtml(number)}','Счёт скопирован!')">📋 Копировать</button>
+    </div>`;
+}
+
+// ==================== ADD/EDIT APT ====================
+function selectPropType(type) {
+  document.getElementById('type-apt').classList.toggle('active', type === 'apt');
+  document.getElementById('type-house').classList.toggle('active', type === 'house');
+}
+
+function openAddApt() {
+  state.editAptId = null;
+  document.getElementById('apt-modal-title').textContent = 'Новая квартира';
+  document.getElementById('apt-name-input').value = '';
+  document.getElementById('apt-addr-input').value = '';
+  document.getElementById('apt-people-input').value = '';
+  document.getElementById('acc-gas').value = '';
+  document.getElementById('acc-gas-org').value = '';
+  document.getElementById('acc-water').value = '';
+  document.getElementById('acc-water-org').value = '';
+  document.getElementById('acc-electric').value = '';
+  document.getElementById('acc-electric-org').value = '';
+  document.getElementById('acc-trash').value = '';
+  document.getElementById('acc-trash-org').value = '';
+  document.getElementById('apt-delete-btn').style.display = 'none';
+  selectPropType('apt');
+  openModal('modal-apt');
+}
+
+function editApt(id) {
+  const apt = state.apartments.find(a => a.id === id);
+  if (!apt) return;
+  state.editAptId = id;
+  document.getElementById('apt-modal-title').textContent = 'Изменить квартиру';
+  document.getElementById('apt-name-input').value = apt.name || '';
+  document.getElementById('apt-addr-input').value = apt.address || '';
+  document.getElementById('apt-people-input').value = apt.people || 1;
+  document.getElementById('acc-gas').value = apt.accounts?.gas || '';
+  document.getElementById('acc-gas-org').value = apt.accounts?.gasOrg || '';
+  document.getElementById('acc-water').value = apt.accounts?.water || '';
+  document.getElementById('acc-water-org').value = apt.accounts?.waterOrg || '';
+  document.getElementById('acc-electric').value = apt.accounts?.electric || '';
+  document.getElementById('acc-electric-org').value = apt.accounts?.electricOrg || '';
+  document.getElementById('acc-trash').value = apt.accounts?.trash || '';
+  document.getElementById('acc-trash-org').value = apt.accounts?.trashOrg || '';
+  document.getElementById('apt-delete-btn').style.display = 'block';
+  selectPropType(apt.propType || 'apt');
+  openModal('modal-apt');
+}
+
+function saveApt() {
+  const name = document.getElementById('apt-name-input').value.trim();
+  if (!name) { showToast('Введите название'); return; }
+  const apt = {
+    id: state.editAptId || 'apt_' + Date.now(),
+    name,
+    address: document.getElementById('apt-addr-input').value.trim(),
+    people: parseInt(document.getElementById('apt-people-input').value) || 1,
+    propType: document.getElementById('type-house').classList.contains('active') ? 'house' : 'apt',
+    accounts: {
+      gas: document.getElementById('acc-gas').value.trim(),
+      gasOrg: document.getElementById('acc-gas-org').value.trim(),
+      water: document.getElementById('acc-water').value.trim(),
+      waterOrg: document.getElementById('acc-water-org').value.trim(),
+      sewer: document.getElementById('acc-sewer').value.trim(),
+      sewerOrg: document.getElementById('acc-sewer-org').value.trim(),
+      electric: document.getElementById('acc-electric').value.trim(),
+      electricOrg: document.getElementById('acc-electric-org').value.trim(),
+      trash: document.getElementById('acc-trash').value.trim(),
+      trashOrg: document.getElementById('acc-trash-org').value.trim(),
+    }
+  };
+  if (state.editAptId) {
+    state.apartments = state.apartments.map(a => a.id === state.editAptId ? apt : a);
+  } else {
+    state.apartments.push(apt);
+  }
+  save();
+  closeModal('modal-apt');
+  renderHome();
+  showToast(state.editAptId ? 'Квартира обновлена ✓' : 'Квартира добавлена ✓');
+}
+
+function deleteApt() {
+  if (!confirm('Удалить квартиру? Данные расчётов останутся в истории.')) return;
+  state.apartments = state.apartments.filter(a => a.id !== state.editAptId);
+  if (state.selectedAptId === state.editAptId) state.selectedAptId = null;
+  save();
+  closeModal('modal-apt');
+  renderHome();
+  showToast('Квартира удалена');
+}
+
+// ==================== CALC ====================
+const SERVICES = [
+  { id: 'gas', icon: '⛽', name: 'Газ', color: '#FFF0CC', modes: ['meter','person'] },
+  { id: 'water', icon: '💧', name: 'Вода', color: '#D6EAF8' },
+  { id: 'electric', icon: '⚡', name: 'Электричество', color: '#FEF9E7', modes: ['meter'] },
+  { id: 'trash', icon: '🗑️', name: 'ТБО (мусор)', color: '#FDEBD0', modes: ['apt','house'] },
+];
+
+function renderCalc() {
+  const selectorEl = document.getElementById('calc-apt-selector');
+  const bodyEl = document.getElementById('calc-body');
+
+  if (state.apartments.length === 0) {
+    selectorEl.innerHTML = '';
+    bodyEl.innerHTML = `<div class="empty-state"><div class="emoji">🏢</div><p>Сначала добавьте квартиру<br>на вкладке «Квартиры»</p></div>`;
+    return;
+  }
+
+  if (!state.selectedAptId || !state.apartments.find(a => a.id === state.selectedAptId)) {
+    state.selectedAptId = state.apartments[0].id;
+  }
+  const apt = state.apartments.find(a => a.id === state.selectedAptId);
+  if (!state.calcData[apt.id]) state.calcData[apt.id] = {};
+  const cd = state.calcData[apt.id];
+
+  // Selector
+  if (state.apartments.length > 1) {
+    selectorEl.innerHTML = `<div class="tabs">${state.apartments.map(a =>
+      `<button class="tab ${a.id === state.selectedAptId ? 'active':''}" onclick="selectCalcApt('${a.id}')">${escHtml(a.name)}</button>`
+    ).join('')}</div>`;
+  } else {
+    selectorEl.innerHTML = `<div class="card" style="margin-bottom:12px;padding:12px 16px">
+      <span style="font-size:1rem;font-weight:700">${escHtml(apt.name)}</span>
+      <span style="color:var(--text-muted);font-size:0.85rem;margin-left:8px">${apt.people} чел.</span>
+    </div>`;
+  }
+
+  // Build calc UI
+  let html = '';
+  SERVICES.forEach(svc => {
+    const key = svc.id;
+    const d = cd[key] || {};
+    const amount = calcService(key, d, apt);
+    const accountKey = key === 'water' ? 'water' : key === 'electric' ? 'electric' : key;
+    const orgKey = accountKey + 'Org';
+    const accountNum = apt.accounts?.[accountKey] || '';
+    const accountOrg = apt.accounts?.[orgKey] || '';
+
+    // Copy buttons
+    let copyRow = '';
+    const amountStr = amount !== null ? (Math.round(amount * 100) / 100).toFixed(2) : null;
+    const topBtns = [];
+    if (accountNum) topBtns.push(`<button class="btn btn-secondary" style="flex:1" onclick="copyText('${escHtml(accountNum)}','ЛС скопирован!')">📋 Счёт</button>`);
+    if (accountOrg) topBtns.push(`<button class="btn btn-secondary" style="flex:1" onclick="copyText('${escHtml(accountOrg)}','Название скопировано!')">🏢 ТСЖ</button>`);
+    const topRow = topBtns.length ? `<div style="display:flex;gap:8px;margin-bottom:8px">${topBtns.join('')}</div>` : '';
+    const amountRow = amountStr ? `<button class="btn btn-primary" style="width:100%" onclick="copyText('${amountStr}','Сумма скопирована!')">💰 К оплате ${amountStr} ₽</button>` : '';
+    if (topRow || amountRow) copyRow = topRow + amountRow;
+
+    // Subtitle under service name
+    const subtitle = [accountNum, accountOrg].filter(Boolean).join(' / ');
+
+    html += `<div class="card" style="margin-bottom:12px">
+      <div style="display:flex;align-items:center;gap:10px;margin-bottom:10px">
+        <div class="service-icon" style="background:${svc.color}">${svc.icon}</div>
+        <div style="flex:1">
+          <div class="card-title">${svc.name}</div>
+          ${subtitle ? `<div style="font-size:0.82rem;color:var(--text-muted);margin-top:3px;font-family:monospace">${escHtml(subtitle)}</div>` : ''}
+        </div>
+      </div>`;
+
+    if (key === 'gas') {
+      html += `
+        <div style="display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-bottom:10px">
+          <div>
+            <div class="input-label">Прошлый, м³</div>
+            ${inputField(apt.id, 'gas', 'prev', d.prev, '0')}
+          </div>
+          <div>
+            <div class="input-label">Текущий, м³</div>
+            ${inputField(apt.id, 'gas', 'curr', d.curr, '0')}
+          </div>
+        </div>
+        <button class="btn btn-secondary" style="width:100%;margin-bottom:10px" onclick="openVoice('${apt.id}','gas','curr')">🎤 Ввести голосом</button>
+        ${copyRow}`;
+    } else if (key === 'water') {
+      html += `
+        <div style="display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-bottom:10px">
+          <div>
+            <div class="input-label">Прошлый, м³</div>
+            ${inputField(apt.id,'water','prev',d.prev,'0')}
+          </div>
+          <div>
+            <div class="input-label">Текущий, м³</div>
+            ${inputField(apt.id,'water','curr',d.curr,'0')}
+          </div>
+        </div>
+        <button class="btn btn-secondary" style="width:100%;margin-bottom:10px" onclick="openVoice('${apt.id}','water','curr')">🎤 Ввести голосом</button>
+        ${copyRow}`;
+    } else if (key === 'electric') {
+      html += `
+        <div style="display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-bottom:10px">
+          <div>
+            <div class="input-label">Прошлый, кВт</div>
+            ${inputField(apt.id,'electric','prev',d.prev,'0')}
+          </div>
+          <div>
+            <div class="input-label">Текущий, кВт</div>
+            ${inputField(apt.id,'electric','curr',d.curr,'0')}
+          </div>
+        </div>
+        <button class="btn btn-secondary" style="width:100%;margin-bottom:10px" onclick="openVoice('${apt.id}','electric','curr')">🎤 Ввести голосом</button>
+        ${copyRow}`;
+    } else if (key === 'trash') {
+      const tmode = apt.propType || 'apt';
+      const rate = tmode === 'house' ? state.tariffs.trash_house : state.tariffs.trash_apt;
+      html += `<div style="font-size:0.95rem;color:var(--text-muted);padding:4px 0;margin-bottom:10px">
+        ${tmode === 'house' ? '🏡 Частный дом' : '🏢 Квартира'} · ${apt.people} чел. × ${rate} ₽
+        <span style="font-size:0.8rem;color:var(--text-hint);display:block;margin-top:4px">Тип объекта задаётся в настройках квартиры</span>
+      </div>
+      ${copyRow}`;
+    }
+
+    html += `</div>`;
+  });
+
+  // Total
+  const total = calcTotal(apt, cd);
+  html += `<div class="total-bar">
+    <div><div class="total-label">Итого к оплате</div></div>
+    <div class="total-amount">${fmt(total)} ₽</div>
+  </div>`;
+  html += `<button class="btn btn-secondary" onclick="openConfirmSave()">📋 Сохранить в историю</button>`;
+  html += `<div style="height:8px"></div>`;
+
+  bodyEl.innerHTML = html;
+}
+
+function inputField(aptId, svc, field, val, placeholder) {
+  const v = val || '';
+  return `<div style="position:relative;display:flex;align-items:center">
+    <button onclick="stepVal('${aptId}','${svc}','${field}',-1)" style="position:absolute;left:6px;z-index:1;background:none;border:none;cursor:pointer;font-size:1.1rem;font-weight:700;color:var(--text-muted);padding:4px 6px;line-height:1">−</button>
+    <input class="input" id="inp-${aptId}-${svc}-${field}" style="width:100%;font-size:1.2rem;text-align:center;font-weight:700;padding:14px 32px"
+      type="number" inputmode="decimal" placeholder="${placeholder}" value="${v}"
+      onchange="setCalcVal('${aptId}','${svc}','${field}',this.value)">
+    <button onclick="stepVal('${aptId}','${svc}','${field}',1)" style="position:absolute;right:6px;z-index:1;background:none;border:none;cursor:pointer;font-size:1.1rem;font-weight:700;color:var(--text-muted);padding:4px 6px;line-height:1">+</button>
+  </div>`;
+}
+
+function stepVal(aptId, svc, field, delta) {
+  const inp = document.getElementById(`inp-${aptId}-${svc}-${field}`);
+  const cur = parseFloat(inp.value) || 0;
+  const next = Math.max(0, Math.round((cur + delta) * 100) / 100);
+  inp.value = next;
+  setCalcVal(aptId, svc, field, next);
+}
+
+function renderCalcAmount(svc, d, apt) {
+  const amount = calcService(svc.id, d, apt);
+  if (amount === null) return `<div class="card-subtitle" style="color:var(--text-hint)">введите показания</div>`;
+  return `<div class="card-subtitle"><span style="font-size:1rem;font-weight:700;color:var(--primary)">${fmt(amount)} ₽</span></div>`;
+}
+
+function calcService(id, d, apt) {
+  const T = state.tariffs;
+  const people = apt.people || 1;
+  if (id === 'gas') {
+    const mode = d.mode || 'meter';
+    if (mode === 'person') return people * T.gas_person;
+    const diff = parseFloat(d.curr) - parseFloat(d.prev);
+    if (isNaN(diff) || diff < 0) return null;
+    return diff * T.gas_meter;
+  }
+  if (id === 'water') {
+    const diff = parseFloat(d.curr) - parseFloat(d.prev);
+    if (isNaN(diff) || diff < 0) return null;
+    return diff * (T.water_supply + T.water_drain);
+  }
+  if (id === 'electric') {
+    const diff = parseFloat(d.curr) - parseFloat(d.prev);
+    if (isNaN(diff) || diff < 0) return null;
+    return diff * T.electric;
+  }
+  if (id === 'trash') {
+    const mode = apt.propType || 'apt';
+    return people * (mode === 'house' ? T.trash_house : T.trash_apt);
+  }
+  return 0;
+}
+
+function calcTotal(apt, cd) {
+  let total = 0;
+  SERVICES.forEach(svc => {
+    const amount = calcService(svc.id, cd[svc.id]||{}, apt);
+    if (amount !== null) total += amount;
+  });
+  return total;
+}
+
+function setCalcVal(aptId, svc, field, val) {
+  if (!state.calcData[aptId]) state.calcData[aptId] = {};
+  if (!state.calcData[aptId][svc]) state.calcData[aptId][svc] = {};
+  state.calcData[aptId][svc][field] = val;
+  save();
+  renderCalc();
+}
+
+function setMode(aptId, svc, mode) {
+  if (!state.calcData[aptId]) state.calcData[aptId] = {};
+  if (!state.calcData[aptId][svc]) state.calcData[aptId][svc] = {};
+  state.calcData[aptId][svc].mode = mode;
+  save();
+}
+
+function selectCalcApt(id) {
+  state.selectedAptId = id;
+  save();
+  renderCalc();
+}
+
+// ==================== CONFIRM SAVE ====================
+function openConfirmSave() {
+  const apt = state.apartments.find(a => a.id === state.selectedAptId);
+  if (!apt) return;
+  const cd = state.calcData[apt.id] || {};
+  const total = calcTotal(apt, cd);
+  const now = new Date();
+  const dateStr = now.toLocaleDateString('ru-RU', { day:'numeric', month:'long', year:'numeric' });
+
+  let rows = '';
+  SERVICES.forEach(svc => {
+    const amount = calcService(svc.id, cd[svc.id]||{}, apt);
+    if (amount !== null) {
+      rows += `<div class="row" style="padding:8px 0;border-bottom:1px solid var(--border)">
+        <span>${svc.icon} ${svc.name}</span>
+        <span style="font-weight:700">${fmt(amount)} ₽</span>
+      </div>`;
+    }
+  });
+
+  document.getElementById('confirm-save-body').innerHTML = `
+    <p style="color:var(--text-muted);font-size:0.9rem;margin-bottom:12px">${escHtml(apt.name)} · ${dateStr}</p>
+    ${rows}
+    <div class="total-bar" style="margin-top:16px">
+      <div class="total-label">Итого</div>
+      <div class="total-amount">${fmt(total)} ₽</div>
+    </div>
+  `;
+  state.pendingCalc = { aptId: apt.id, aptName: apt.name, date: now.toISOString(), total, rows: buildHistoryRows(svc => calcService(svc.id, cd[svc.id]||{}, apt), apt) };
+  openModal('modal-confirm-save');
+}
+
+function buildHistoryRows(calcFn, apt) {
+  const rows = {};
+  SERVICES.forEach(svc => { rows[svc.id] = calcFn(svc); });
+  return rows;
+}
+
+function confirmSave() {
+  if (!state.pendingCalc) return;
+  state.history.unshift(state.pendingCalc);
+  state.pendingCalc = null;
+  save();
+  closeModal('modal-confirm-save');
+  showToast('Сохранено в историю ✓');
+}
+
+// ==================== HISTORY ====================
+function renderHistory() {
+  const el = document.getElementById('history-body');
+  if (state.history.length === 0) {
+    el.innerHTML = `<div class="empty-state"><div class="emoji">📋</div><p>История пока пуста.<br>Сохраните первый расчёт.</p></div>`;
+    return;
+  }
+  el.innerHTML = state.history.map((h, i) => {
+    const date = new Date(h.date).toLocaleDateString('ru-RU', { day:'numeric', month:'long' });
+    return `<div class="card" style="margin-bottom:10px">
+      <div class="row" style="margin-bottom:8px">
+        <div>
+          <div style="font-weight:700">${escHtml(h.aptName || 'Квартира')}</div>
+          <div style="font-size:0.8rem;color:var(--text-muted)">${date}</div>
+        </div>
+        <div style="font-size:1.3rem;font-weight:800;color:var(--primary)">${fmt(h.total)} ₽</div>
+      </div>
+      ${h.rows ? Object.entries(h.rows).filter(([,v])=>v!==null).map(([k,v]) => {
+        const svc = SERVICES.find(s=>s.id===k);
+        return svc ? `<div class="row" style="padding:4px 0;font-size:0.85rem">
+          <span style="color:var(--text-muted)">${svc.icon} ${svc.name}</span>
+          <span>${fmt(v)} ₽</span>
+        </div>` : '';
+      }).join('') : ''}
+      <div style="margin-top:8px">
+        <button class="btn btn-sm btn-danger" onclick="deleteHistory(${i})">🗑️ Удалить</button>
+      </div>
+    </div>`;
+  }).join('');
+}
+
+function deleteHistory(i) {
+  state.history.splice(i, 1);
+  save();
+  renderHistory();
+}
+
+// ==================== SETTINGS ====================
+function renderSettings() {
+  const T = state.tariffs;
+  const el = document.getElementById('tariffs-form');
+  el.innerHTML = `
+    <div class="card" style="margin-bottom:12px">
+      <div style="display:flex;align-items:center;gap:10px;margin-bottom:12px">
+        <div class="service-icon" style="background:#FFF0CC">⛽</div>
+        <div class="card-title">Газ</div>
+      </div>
+      <div class="tariff-row">
+        <span class="tariff-label-text">По счётчику (₽/м³)</span>
+        <input class="input tariff-input" id="t-gas-meter" type="number" step="0.01" value="${T.gas_meter}">
+      </div>
+      <div class="tariff-row">
+        <span class="tariff-label-text">По нормативу (₽/чел)</span>
+        <input class="input tariff-input" id="t-gas-person" type="number" step="0.01" value="${T.gas_person}">
+      </div>
+    </div>
+    <div class="card" style="margin-bottom:12px">
+      <div style="display:flex;align-items:center;gap:10px;margin-bottom:12px">
+        <div class="service-icon" style="background:#D6EAF8">💧</div>
+        <div class="card-title">Вода</div>
+      </div>
+      <div class="tariff-row">
+        <span class="tariff-label-text">Подача (₽/м³)</span>
+        <input class="input tariff-input" id="t-water-supply" type="number" step="0.01" value="${T.water_supply}">
+      </div>
+      <div class="tariff-row">
+        <span class="tariff-label-text">Канализация (₽/м³)</span>
+        <input class="input tariff-input" id="t-water-drain" type="number" step="0.01" value="${T.water_drain}">
+      </div>
+    </div>
+    <div class="card" style="margin-bottom:12px">
+      <div style="display:flex;align-items:center;gap:10px;margin-bottom:12px">
+        <div class="service-icon" style="background:#FEF9E7">⚡</div>
+        <div class="card-title">Электричество</div>
+      </div>
+      <div class="tariff-row">
+        <span class="tariff-label-text">Тариф (₽/кВт·ч)</span>
+        <input class="input tariff-input" id="t-electric" type="number" step="0.01" value="${T.electric}">
+      </div>
+    </div>
+    <div class="card" style="margin-bottom:16px">
+      <div style="display:flex;align-items:center;gap:10px;margin-bottom:12px">
+        <div class="service-icon" style="background:#FDEBD0">🗑️</div>
+        <div class="card-title">ТБО (мусор)</div>
+      </div>
+      <div class="tariff-row">
+        <span class="tariff-label-text">Квартира (₽/чел)</span>
+        <input class="input tariff-input" id="t-trash-apt" type="number" step="0.01" value="${T.trash_apt}">
+      </div>
+      <div class="tariff-row">
+        <span class="tariff-label-text">Частный дом (₽/чел)</span>
+        <input class="input tariff-input" id="t-trash-house" type="number" step="0.01" value="${T.trash_house}">
+      </div>
+    </div>
+    <button class="btn btn-ghost" style="width:100%;margin-bottom:16px" onclick="resetTariffs()">↺ Сбросить к стандартным</button>
+  `;
+}
+
+function saveTariffs() {
+  state.tariffs = {
+    gas_meter: parseFloat(document.getElementById('t-gas-meter').value) || DEFAULT_TARIFFS.gas_meter,
+    gas_person: parseFloat(document.getElementById('t-gas-person').value) || DEFAULT_TARIFFS.gas_person,
+    water_supply: parseFloat(document.getElementById('t-water-supply').value) || DEFAULT_TARIFFS.water_supply,
+    water_drain: parseFloat(document.getElementById('t-water-drain').value) || DEFAULT_TARIFFS.water_drain,
+    electric: parseFloat(document.getElementById('t-electric').value) || DEFAULT_TARIFFS.electric,
+    trash_apt: parseFloat(document.getElementById('t-trash-apt').value) || DEFAULT_TARIFFS.trash_apt,
+    trash_house: parseFloat(document.getElementById('t-trash-house').value) || DEFAULT_TARIFFS.trash_house,
+  };
+  save();
+  showToast('Тарифы сохранены ✓');
+}
+
+function resetTariffs() {
+  state.tariffs = { ...DEFAULT_TARIFFS };
+  save();
+  renderSettings();
+  showToast('Тарифы сброшены');
+}
+
+// ==================== VOICE ====================
+function openVoice(aptId, svc, field) {
+  voiceTarget = { aptId, svc, field };
+  document.getElementById('voice-number').textContent = '';
+  document.getElementById('voice-status').textContent = 'Нажмите для записи';
+  document.getElementById('voice-actions').style.display = 'none';
+  document.getElementById('voice-btn').classList.remove('recording');
+  openModal('modal-voice');
+}
+
+function toggleVoice() {
+  if (isRecording) {
+    stopVoice();
+  } else {
+    startVoice();
+  }
+}
+
+function startVoice() {
+  const SpeechRecognition = window.SpeechRecognition || window.webkitSpeechRecognition;
+  if (!SpeechRecognition) {
+    showToast('Голосовой ввод не поддерживается в этом браузере');
+    return;
+  }
+  voiceRecognition = new SpeechRecognition();
+  voiceRecognition.lang = 'ru-RU';
+  voiceRecognition.interimResults = false;
+  voiceRecognition.maxAlternatives = 3;
+
+  voiceRecognition.onstart = () => {
+    isRecording = true;
+    document.getElementById('voice-btn').classList.add('recording');
+    document.getElementById('voice-status').textContent = '🔴 Говорите число...';
+    document.getElementById('voice-actions').style.display = 'none';
+  };
+
+  voiceRecognition.onresult = (event) => {
+    let text = '';
+    for (let i = 0; i < event.results[0].length; i++) {
+      text = event.results[0][i].transcript;
+      const num = extractNumber(text);
+      if (num !== null) {
+        document.getElementById('voice-number').textContent = num;
+        document.getElementById('voice-status').textContent = `Распознано: "${text}"`;
+        document.getElementById('voice-actions').style.display = 'flex';
+        break;
+      }
+    }
+    if (!document.getElementById('voice-actions').style.display || document.getElementById('voice-actions').style.display === 'none') {
+      document.getElementById('voice-status').textContent = `Не удалось разобрать: "${text}". Попробуйте снова.`;
+    }
+  };
+
+  voiceRecognition.onerror = (e) => {
+    document.getElementById('voice-status').textContent = 'Ошибка. Попробуйте ещё раз.';
+    stopVoice();
+  };
+
+  voiceRecognition.onend = () => { stopVoice(); };
+
+  voiceRecognition.start();
+}
+
+function stopVoice() {
+  isRecording = false;
+  document.getElementById('voice-btn').classList.remove('recording');
+  if (voiceRecognition) { try { voiceRecognition.stop(); } catch(e) {} }
+}
+
+function extractNumber(text) {
+  const cleaned = text.replace(/[^\d.,\s]/g, '').trim();
+  const num = parseFloat(cleaned.replace(',', '.'));
+  if (!isNaN(num)) return num;
+  // word numbers
+  const words = { 'ноль':0,'один':1,'одна':1,'два':2,'две':2,'три':3,'четыре':4,'пять':5,'шесть':6,'семь':7,'восемь':8,'девять':9,'десять':10,'одиннадцать':11,'двенадцать':12,'тринадцать':13,'четырнадцать':14,'пятнадцать':15,'шестнадцать':16,'семнадцать':17,'восемнадцать':18,'девятнадцать':19,'двадцать':20 };
+  const lower = text.toLowerCase().trim();
+  if (words[lower] !== undefined) return words[lower];
+  return null;
+}
+
+function voiceRetry() {
+  document.getElementById('voice-number').textContent = '';
+  document.getElementById('voice-status').textContent = 'Нажмите для записи';
+  document.getElementById('voice-actions').style.display = 'none';
+}
+
+function voiceConfirm() {
+  const num = document.getElementById('voice-number').textContent;
+  if (!num || !voiceTarget) return;
+  setCalcVal(voiceTarget.aptId, voiceTarget.svc, voiceTarget.field, num);
+  closeModal('modal-voice');
+  showToast(`Введено: ${num} ✓`);
+}
+
+// ==================== MODAL ====================
+function openModal(id) {
+  document.getElementById(id).classList.add('open');
+}
+function closeModal(id) {
+  document.getElementById(id).classList.remove('open');
+  if (id === 'modal-voice') stopVoice();
+}
+
+// Close modal on overlay click
+document.querySelectorAll('.modal-overlay').forEach(el => {
+  el.addEventListener('click', e => {
+    if (e.target === el) closeModal(el.id);
+  });
+});
+
+// ==================== UTILS ====================
+function fmt(n) {
+  if (n === null || n === undefined) return '—';
+  return Math.round(n * 100) / 100 + '';
+}
+
+function escHtml(s) {
+  return String(s || '').replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/"/g,'&quot;');
+}
+
+function copyText(text, msg) {
+  navigator.clipboard.writeText(text).then(() => showToast(msg || 'Скопировано!')).catch(() => {
+    const el = document.createElement('textarea');
+    el.value = text; document.body.appendChild(el);
+    el.select(); document.execCommand('copy');
+    document.body.removeChild(el);
+    showToast(msg || 'Скопировано!');
+  });
+}
+
+let toastTimer;
+function showToast(msg) {
+  const el = document.getElementById('toast');
+  el.textContent = msg;
+  el.classList.add('show');
+  clearTimeout(toastTimer);
+  toastTimer = setTimeout(() => el.classList.remove('show'), 2200);
+}
+
+// ==================== BOOT ====================
+load();
+renderHome();
+</script>
+</body>
+</html>
