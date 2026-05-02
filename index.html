@@ -217,6 +217,27 @@
           <button class="chip" id="type-house" onclick="selectPropType('house')">🏡 Частный дом</button>
         </div>
       </div>
+      <div style="font-size:0.75rem;font-weight:700;color:var(--text-hint);text-transform:uppercase;letter-spacing:0.08em;margin:16px 0 10px">Услуги</div>
+      <div style="display:grid;grid-template-columns:1fr 1fr;gap:8px;margin-bottom:16px">
+        <label style="display:flex;align-items:center;gap:8px;padding:10px 12px;background:var(--bg);border-radius:10px;cursor:pointer">
+          <input type="checkbox" id="svc-gas" style="width:20px;height:20px;cursor:pointer"> <span>⛽ Газ</span>
+        </label>
+        <label style="display:flex;align-items:center;gap:8px;padding:10px 12px;background:var(--bg);border-radius:10px;cursor:pointer">
+          <input type="checkbox" id="svc-water" style="width:20px;height:20px;cursor:pointer"> <span>💧 Вода</span>
+        </label>
+        <label style="display:flex;align-items:center;gap:8px;padding:10px 12px;background:var(--bg);border-radius:10px;cursor:pointer">
+          <input type="checkbox" id="svc-electric" style="width:20px;height:20px;cursor:pointer"> <span>⚡ Свет</span>
+        </label>
+        <label style="display:flex;align-items:center;gap:8px;padding:10px 12px;background:var(--bg);border-radius:10px;cursor:pointer">
+          <input type="checkbox" id="svc-trash" style="width:20px;height:20px;cursor:pointer"> <span>🗑️ ТБО</span>
+        </label>
+        <label style="display:flex;align-items:center;gap:8px;padding:10px 12px;background:var(--bg);border-radius:10px;cursor:pointer">
+          <input type="checkbox" id="svc-heat" style="width:20px;height:20px;cursor:pointer"> <span>🔥 Тепло</span>
+        </label>
+        <label style="display:flex;align-items:center;gap:8px;padding:10px 12px;background:var(--bg);border-radius:10px;cursor:pointer">
+          <input type="checkbox" id="svc-zhek" style="width:20px;height:20px;cursor:pointer"> <span>🏢 ЖЭК</span>
+        </label>
+      </div>
       <div style="font-size:0.75rem;font-weight:700;color:var(--text-hint);text-transform:uppercase;letter-spacing:0.08em;margin:16px 0 10px">Лицевые счета</div>
       <div class="input-group">
         <label class="input-label">⛽ Газ</label>
@@ -242,6 +263,11 @@
         <label class="input-label">🏢 ЖЭК / Управляющая компания</label>
         <input class="input" id="acc-zhek-org" placeholder="Название ЖЭК / УК" style="margin-bottom:6px">
         <input class="input" id="acc-zhek" placeholder="Лицевой счёт" style="font-family:monospace">
+      </div>
+      <div class="input-group">
+        <label class="input-label">🔥 Тепло</label>
+        <input class="input" id="acc-heat-org" placeholder="Название организации" style="margin-bottom:6px">
+        <input class="input" id="acc-heat" placeholder="Лицевой счёт" style="font-family:monospace">
       </div>
       <div style="display:flex;gap:10px;margin-top:6px">
         <button class="btn btn-ghost" style="flex:1" onclick="closeSheet('sheet-apt')">Отмена</button>
@@ -415,7 +441,8 @@ function renderHome() {
         ${acctItem('💧','Вода',apt.accounts?.water,apt.accounts?.waterOrg)}
         ${acctItem('⚡','Свет',apt.accounts?.electric,apt.accounts?.electricOrg)}
         ${acctItem('🗑️','ТБО',apt.accounts?.trash,apt.accounts?.trashOrg)}
-        ${apt.accounts?.zhek ? acctItem('🏢','ЖЭК',apt.accounts?.zhek,apt.accounts?.zhekOrg) : ''}
+        ${apt.services?.heat ? acctItem('🔥','Тепло',apt.accounts?.heat,apt.accounts?.heatOrg) : ''}
+        ${apt.services?.zhek ? acctItem('🏢','ЖЭК',apt.accounts?.zhek,apt.accounts?.zhekOrg) : ''}
       </div>
     </div>`).join('');
 }
@@ -441,6 +468,13 @@ function openAptSheet(id) {
   });
   document.getElementById('acc-zhek').value = apt?.accounts?.zhek||'';
   document.getElementById('acc-zhek-org').value = apt?.accounts?.zhekOrg||'';
+  document.getElementById('acc-heat').value = apt?.accounts?.heat||'';
+  document.getElementById('acc-heat-org').value = apt?.accounts?.heatOrg||'';
+  // Services checkboxes — default all on for new apt
+  const svcs = apt?.services || {gas:true,water:true,electric:true,trash:true,heat:false,zhek:false};
+  ['gas','water','electric','trash','heat','zhek'].forEach(k => {
+    document.getElementById('svc-'+k).checked = svcs[k]||false;
+  });
   document.getElementById('apt-delete-btn').style.display = apt?'block':'none';
   selectPropType(apt?.propType||'apt');
   openSheet('sheet-apt');
@@ -452,7 +486,11 @@ async function saveApt() {
   ['gas','water','electric','trash'].forEach(k => { accounts[k]=document.getElementById('acc-'+k).value.trim(); accounts[k+'Org']=document.getElementById('acc-'+k+'-org').value.trim(); });
   accounts.zhek = document.getElementById('acc-zhek').value.trim();
   accounts.zhekOrg = document.getElementById('acc-zhek-org').value.trim();
-  const apt = { id:state.editAptId||'apt_'+Date.now(), address, people:parseInt(document.getElementById('apt-people-input').value)||1, propType:document.getElementById('type-house').classList.contains('active')?'house':'apt', accounts };
+  accounts.heat = document.getElementById('acc-heat').value.trim();
+  accounts.heatOrg = document.getElementById('acc-heat-org').value.trim();
+  const services = {};
+  ['gas','water','electric','trash','heat','zhek'].forEach(k => { services[k]=document.getElementById('svc-'+k).checked; });
+  const apt = { id:state.editAptId||'apt_'+Date.now(), address, people:parseInt(document.getElementById('apt-people-input').value)||1, propType:document.getElementById('type-house').classList.contains('active')?'house':'apt', accounts, services };
   const wasEdit=state.editAptId;
   if (wasEdit) state.apartments=state.apartments.map(a=>a.id===wasEdit?apt:a); else state.apartments.push(apt);
   await syncSaveApts();
@@ -474,6 +512,7 @@ const SERVICES = [
   {id:'water',icon:'💧',name:'Вода',color:'#D6EAF8'},
   {id:'electric',icon:'⚡',name:'Электричество',color:'#FEF9E7'},
   {id:'trash',icon:'🗑️',name:'ТБО (мусор)',color:'#FDEBD0'},
+  {id:'heat',icon:'🔥',name:'Тепло',color:'#FFE5D0'},
   {id:'zhek',icon:'🏢',name:'ЖЭК / УК',color:'#EEE8F5'},
 ];
 
@@ -509,19 +548,20 @@ function renderCalc() {
 
   let html='';
   SERVICES.forEach(svc => {
-    // Skip zhek if not filled
-    if (svc.id==='zhek' && !apt.accounts?.zhek && !apt.accounts?.zhekOrg) return;
+    // Filter by apt services settings
+    const svcs = apt.services || {gas:true,water:true,electric:true,trash:true,heat:false,zhek:false};
+    if (!svcs[svc.id]) return;
 
     const d=cd[svc.id]||{};
     const amount=calcService(svc.id,d,apt,T);
-    const accNum = svc.id==='zhek' ? (apt.accounts?.zhek||'') : (apt.accounts?.[svc.id]||'');
-    const accOrg = svc.id==='zhek' ? (apt.accounts?.zhekOrg||'') : (apt.accounts?.[svc.id+'Org']||'');
+    const accNum = (svc.id==='zhek'||svc.id==='heat') ? (apt.accounts?.[svc.id]||'') : (apt.accounts?.[svc.id]||'');
+    const accOrg = (svc.id==='zhek'||svc.id==='heat') ? (apt.accounts?.[svc.id+'Org']||'') : (apt.accounts?.[svc.id+'Org']||'');
     const amtStr=amount!==null?(Math.round(amount*100)/100).toFixed(2):null;
     const subtitle=[accNum,accOrg].filter(Boolean).join(' / ');
 
     const topBtns=[];
-    if (accNum) topBtns.push(`<button class="btn btn-secondary btn-sm" style="flex:1" onclick="copyText('${escHtml(accNum)}','ЛС скопирован!')">📋 Счёт</button>`);
-    if (accOrg) topBtns.push(`<button class="btn btn-secondary btn-sm" style="flex:1" onclick="copyText('${escHtml(accOrg)}','Скопировано!')">🏢 ТСЖ</button>`);
+    if (accNum) topBtns.push(`<button class="btn btn-secondary" style="flex:1;padding:12px 10px;font-size:0.9rem" onclick="copyText('${escHtml(accNum)}','ЛС скопирован!')">📋 Счёт</button>`);
+    if (accOrg) topBtns.push(`<button class="btn btn-secondary" style="flex:1;padding:12px 10px;font-size:0.9rem" onclick="copyText('${escHtml(accOrg)}','Скопировано!')">🏢 ТСЖ</button>`);
     const topRow=topBtns.length?`<div style="display:flex;gap:8px;margin-bottom:8px">${topBtns.join('')}</div>`:'';
     const amtRow=amtStr?`<button class="btn btn-primary" style="width:100%" onclick="copyText('${amtStr}','Сумма скопирована!')">💰 К оплате ${amtStr} ₽</button>`:'';
 
@@ -573,15 +613,16 @@ function renderCalc() {
       </div>${rateHint}${topRow}${amtRow}`;
     } else if (svc.id==='trash') {
       html+=`<div style="font-size:0.9rem;color:var(--text-muted);margin-bottom:10px">${apt.propType==='house'?'🏡 Дом':'🏢 Квартира'} · ${apt.people} чел. × ${T.trash} ₽</div>${topRow}${amtRow}`;
-    } else if (svc.id==='zhek') {
-      // Manual amount entry
+    } else if (svc.id==='heat' || svc.id==='zhek') {
+      const label = svc.id==='heat' ? 'Сумма из квитанции, ₽' : 'Сумма к оплате, ₽';
+      const hint = svc.id==='heat' ? 'Введите сумму за тепло из квитанции' : 'Тепло / вода / общие услуги — вводите итоговую сумму';
       html+=`<div style="margin-bottom:10px">
-        <div class="input-label">Сумма к оплате, ₽</div>
+        <div class="input-label">${label}</div>
         <div class="field-row">
-          <div class="input-wrap">${inputFieldManual(apt.id,'zhek','amount',d.amount,'0.00')}</div>
-          <button class="btn-mic" onclick="openVoice('${apt.id}','zhek','amount','Сумма ЖЭК, ₽')">🎤</button>
+          <div class="input-wrap">${inputFieldManual(apt.id,svc.id,'amount',d.amount,'0.00')}</div>
+          <button class="btn-mic" onclick="openVoice('${apt.id}','${svc.id}','amount','${label}')">🎤</button>
         </div>
-        <div style="font-size:0.78rem;color:var(--text-hint);margin-top:6px">Тепло / вода / общие услуги — вводите итоговую сумму из квитанции</div>
+        <div style="font-size:0.78rem;color:var(--text-hint);margin-top:6px">${hint}</div>
       </div>${topRow}${amtRow}`;
     }
     html+=`</div>`;
@@ -617,16 +658,28 @@ function stepVal(aptId,svc,field,delta) {
 function calcService(id,d,apt,T) {
   if (!T) T=state.tariffs[apt.propType||'apt']||state.tariffs.apt;
   const people=apt.people||1;
-  if (id==='gas') { const diff=parseFloat(d.curr)-parseFloat(d.prev); if(isNaN(diff)||diff<0)return null; return diff*T.gas_meter; }
-  if (id==='water') { const diff=parseFloat(d.curr)-parseFloat(d.prev); if(isNaN(diff)||diff<0)return null; return diff*(T.water_supply+T.water_drain); }
+  if (id==='gas') {
+    const prev=parseFloat(d.prev), curr=parseFloat(d.curr);
+    if (isNaN(prev)||isNaN(curr)||d.prev===''||d.prev===undefined||d.curr===''||d.curr===undefined) return null;
+    const diff=curr-prev; if(diff<0)return null;
+    return diff*T.gas_meter;
+  }
+  if (id==='water') {
+    const prev=parseFloat(d.prev), curr=parseFloat(d.curr);
+    if (isNaN(prev)||isNaN(curr)||d.prev===''||d.prev===undefined||d.curr===''||d.curr===undefined) return null;
+    const diff=curr-prev; if(diff<0)return null;
+    return diff*(T.water_supply+T.water_drain);
+  }
   if (id==='electric') {
-    const diff=parseFloat(d.curr)-parseFloat(d.prev); if(isNaN(diff)||diff<0)return null;
+    const prev=parseFloat(d.prev), curr=parseFloat(d.curr);
+    if (isNaN(prev)||isNaN(curr)||d.prev===''||d.prev===undefined||d.curr===''||d.curr===undefined) return null;
+    const diff=curr-prev; if(diff<0)return null;
     const thr=T.electric_threshold||100, lo=T.electric_low||1.91, hi=T.electric_high||4.40;
     if (diff<=thr) return diff*lo;
     return thr*lo + (diff-thr)*hi;
   }
   if (id==='trash') return people*T.trash;
-  if (id==='zhek') { const a=parseFloat(d.amount); return isNaN(a)||a<=0?null:a; }
+  if (id==='heat'||id==='zhek') { const a=parseFloat(d.amount); return isNaN(a)||a<=0?null:a; }
   return 0;
 }
 function calcTotal(apt,cd,T) { let t=0; SERVICES.forEach(s=>{const a=calcService(s.id,cd[s.id]||{},apt,T);if(a!==null)t+=a;}); return t; }
@@ -817,3 +870,4 @@ boot();
 </script>
 </body>
 </html>
+
