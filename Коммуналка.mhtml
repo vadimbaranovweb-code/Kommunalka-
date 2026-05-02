@@ -1,0 +1,643 @@
+From: <Saved by Blink>
+Snapshot-Content-Location: file:///Users/vadimbaranov/Downloads/%D0%BA%D0%BE%D0%BC%D0%BC%D1%83%D0%BD%D0%B0%D0%BB%D0%BA%D0%B0_2.html
+Subject: =?utf-8?Q?=D0=9A=D0=BE=D0=BC=D0=BC=D1=83=D0=BD=D0=B0=D0=BB=D0=BA=D0=B0?=
+Date: Sat, 2 May 2026 18:01:59 +0300
+MIME-Version: 1.0
+Content-Type: multipart/related;
+	type="text/html";
+	boundary="----MultipartBoundary--tWHcrelTOuavqSihbfpi9JMA0tvxWhxKOnDBHZjH7V----"
+
+
+------MultipartBoundary--tWHcrelTOuavqSihbfpi9JMA0tvxWhxKOnDBHZjH7V----
+Content-Type: text/html
+Content-ID: <frame-1DC04ABD9B999EA4A7947134B4BCB2BA@mhtml.blink>
+Content-Transfer-Encoding: quoted-printable
+Content-Location: file:///Users/vadimbaranov/Downloads/%D0%BA%D0%BE%D0%BC%D0%BC%D1%83%D0%BD%D0%B0%D0%BB%D0%BA%D0%B0_2.html
+
+<!DOCTYPE html><html lang=3D"ru"><head><meta http-equiv=3D"Content-Type" co=
+ntent=3D"text/html; charset=3DUTF-8"><link rel=3D"stylesheet" type=3D"text/=
+css" href=3D"cid:css-35efd209-9bad-4589-b2d3-823b62726a80@mhtml.blink" />
+
+<meta name=3D"viewport" content=3D"width=3Ddevice-width, initial-scale=3D1.=
+0, maximum-scale=3D1.0, viewport-fit=3Dcover">
+<title>=D0=9A=D0=BE=D0=BC=D0=BC=D1=83=D0=BD=D0=B0=D0=BB=D0=BA=D0=B0</title>
+
+</head>
+<body>
+<div class=3D"app">
+
+  <!-- AUTH -->
+  <div class=3D"screen active" id=3D"screen-auth">
+    <div style=3D"flex:1;display:flex;flex-direction:column;align-items:cen=
+ter;justify-content:center;padding:32px 20px">
+      <div style=3D"font-size:3rem;margin-bottom:16px">=F0=9F=8F=A0</div>
+      <h1 style=3D"font-size:1.8rem;font-weight:800;margin-bottom:8px">=D0=
+=9A=D0=BE=D0=BC=D0=BC=D1=83=D0=BD=D0=B0=D0=BB=D0=BA=D0=B0</h1>
+      <p style=3D"color:var(--text-muted);text-align:center;margin-bottom:4=
+0px">=D0=A3=D1=87=D1=91=D1=82 =D0=BA=D0=BE=D0=BC=D0=BC=D1=83=D0=BD=D0=B0=D0=
+=BB=D1=8C=D0=BD=D1=8B=D1=85 =D0=BF=D0=BB=D0=B0=D1=82=D0=B5=D0=B6=D0=B5=D0=
+=B9</p>
+      <div id=3D"auth-form" style=3D"width: 100%; display: block;">
+        <button class=3D"btn btn-ghost" style=3D"width:100%;margin-bottom:1=
+2px;gap:10px">
+          <svg width=3D"18" height=3D"18" viewBox=3D"0 0 48 48"><path fill=
+=3D"#EA4335" d=3D"M24 9.5c3.54 0 6.71 1.22 9.21 3.6l6.85-6.85C35.9 2.38 30.=
+47 0 24 0 14.62 0 6.51 5.38 2.56 13.22l7.98 6.19C12.43 13.08 17.74 9.5 24 9=
+.5z"></path><path fill=3D"#4285F4" d=3D"M46.98 24.55c0-1.57-.15-3.09-.38-4.=
+55H24v9.02h12.94c-.58 2.96-2.26 5.48-4.78 7.18l7.73 6c4.51-4.18 7.09-10.36 =
+7.09-17.65z"></path><path fill=3D"#FBBC05" d=3D"M10.53 28.59c-.48-1.45-.76-=
+2.99-.76-4.59s.27-3.14.76-4.59l-7.98-6.19C.92 16.46 0 20.12 0 24c0 3.88.92 =
+7.54 2.56 10.78l7.97-6.19z"></path><path fill=3D"#34A853" d=3D"M24 48c6.48 =
+0 11.93-2.13 15.89-5.81l-7.73-6c-2.15 1.45-4.92 2.3-8.16 2.3-6.26 0-11.57-3=
+.59-13.46-8.91l-7.98 6.19C6.51 42.62 14.62 48 24 48z"></path></svg>
+          =D0=92=D0=BE=D0=B9=D1=82=D0=B8 =D1=87=D0=B5=D1=80=D0=B5=D0=B7 Goo=
+gle
+        </button>
+        <div style=3D"display:flex;align-items:center;gap:12px;margin:14px =
+0">
+          <div style=3D"flex:1;height:1px;background:var(--border)"></div>
+          <span style=3D"font-size:0.8rem;color:var(--text-hint)">=D0=B8=D0=
+=BB=D0=B8</span>
+          <div style=3D"flex:1;height:1px;background:var(--border)"></div>
+        </div>
+        <div class=3D"input-group">
+          <label class=3D"input-label">Email</label>
+          <input class=3D"input" id=3D"auth-email" type=3D"email" placehold=
+er=3D"example@mail.ru">
+        </div>
+        <button class=3D"btn btn-primary" style=3D"width:100%" id=3D"auth-b=
+tn">=E2=9C=89=EF=B8=8F =D0=92=D0=BE=D0=B9=D1=82=D0=B8 =D0=BF=D0=BE =D1=81=
+=D1=81=D1=8B=D0=BB=D0=BA=D0=B5</button>
+        <p style=3D"text-align:center;font-size:0.78rem;color:var(--text-hi=
+nt);margin-top:14px;line-height:1.5">=D0=9F=D0=B0=D1=80=D0=BE=D0=BB=D1=8C =
+=D0=BD=D0=B5 =D0=BD=D1=83=D0=B6=D0=B5=D0=BD =E2=80=94 =D0=BE=D1=82=D0=BF=D1=
+=80=D0=B0=D0=B2=D0=B8=D0=BC =D1=81=D1=81=D1=8B=D0=BB=D0=BA=D1=83 =D0=BD=D0=
+=B0 email</p>
+      </div>
+      <div id=3D"auth-sent" style=3D"display:none;text-align:center">
+        <div style=3D"font-size:2.5rem;margin-bottom:16px">=F0=9F=93=AC</di=
+v>
+        <p style=3D"font-weight:700;font-size:1.1rem;margin-bottom:8px">=D0=
+=9F=D0=B8=D1=81=D1=8C=D0=BC=D0=BE =D0=BE=D1=82=D0=BF=D1=80=D0=B0=D0=B2=D0=
+=BB=D0=B5=D0=BD=D0=BE!</p>
+        <p style=3D"color:var(--text-muted);font-size:0.9rem;line-height:1.=
+5">=D0=9E=D1=82=D0=BA=D1=80=D0=BE=D0=B9=D1=82=D0=B5 =D0=BF=D0=B8=D1=81=D1=
+=8C=D0=BC=D0=BE =D0=B8 =D0=BD=D0=B0=D0=B6=D0=BC=D0=B8=D1=82=D0=B5 =D1=81=D1=
+=81=D1=8B=D0=BB=D0=BA=D1=83 =D0=B4=D0=BB=D1=8F =D0=B2=D1=85=D0=BE=D0=B4=D0=
+=B0</p>
+        <button class=3D"btn btn-ghost" style=3D"margin-top:20px;padding:12=
+px 24px">=D0=98=D0=B7=D0=BC=D0=B5=D0=BD=D0=B8=D1=82=D1=8C email</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- HOME -->
+  <div class=3D"screen" id=3D"screen-home">
+    <div class=3D"top-bar">
+      <h1>=F0=9F=8F=A0 =D0=9A=D0=B2=D0=B0=D1=80=D1=82=D0=B8=D1=80=D1=8B</h1=
+>
+      <button class=3D"btn btn-icon btn-secondary">=E2=9E=95</button>
+      <button class=3D"btn btn-icon btn-ghost">=F0=9F=91=A4</button>
+    </div>
+    <div class=3D"content">
+      <div id=3D"apt-list-home"></div>
+      <div id=3D"empty-home" class=3D"empty-state" style=3D"display:none">
+        <div class=3D"emoji">=F0=9F=8F=A2</div>
+        <p>=D0=94=D0=BE=D0=B1=D0=B0=D0=B2=D1=8C=D1=82=D0=B5 =D0=BF=D0=B5=D1=
+=80=D0=B2=D1=83=D1=8E =D0=BA=D0=B2=D0=B0=D1=80=D1=82=D0=B8=D1=80=D1=83</p>
+        <button class=3D"btn btn-primary" style=3D"padding:14px 32px">=D0=
+=94=D0=BE=D0=B1=D0=B0=D0=B2=D0=B8=D1=82=D1=8C =D0=BA=D0=B2=D0=B0=D1=80=D1=
+=82=D0=B8=D1=80=D1=83</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- CALC -->
+  <div class=3D"screen" id=3D"screen-calc">
+    <div class=3D"top-bar"><h1>=F0=9F=92=A1 =D0=A0=D0=B0=D1=81=D1=87=D1=91=
+=D1=82</h1></div>
+    <div class=3D"content">
+      <div id=3D"calc-apt-selector"></div>
+      <div id=3D"calc-body"></div>
+    </div>
+  </div>
+
+  <!-- HISTORY -->
+  <div class=3D"screen" id=3D"screen-history">
+    <div class=3D"top-bar"><h1>=F0=9F=93=8B =D0=98=D1=81=D1=82=D0=BE=D1=80=
+=D0=B8=D1=8F</h1></div>
+    <div class=3D"content"><div id=3D"history-body"></div></div>
+  </div>
+
+  <!-- SETTINGS -->
+  <div class=3D"screen" id=3D"screen-settings">
+    <div class=3D"top-bar"><h1>=E2=9A=99=EF=B8=8F =D0=A2=D0=B0=D1=80=D0=B8=
+=D1=84=D1=8B</h1></div>
+    <div class=3D"content">
+      <div class=3D"card" style=3D"margin-bottom:12px">
+        <p style=3D"font-size:0.88rem;color:var(--text-muted);line-height:1=
+.5">=D0=A2=D0=B0=D1=80=D0=B8=D1=84=D1=8B =D0=B7=D0=B0=D0=B2=D0=B8=D1=81=D1=
+=8F=D1=82 =D0=BE=D1=82 =D1=82=D0=B8=D0=BF=D0=B0 =D0=BE=D0=B1=D1=8A=D0=B5=D0=
+=BA=D1=82=D0=B0. =D0=9F=D0=B5=D1=80=D0=B5=D0=BA=D0=BB=D1=8E=D1=87=D0=B0=D0=
+=B9=D1=82=D0=B5 =D0=B2=D0=BA=D0=BB=D0=B0=D0=B4=D0=BA=D1=83 =D0=B8 =D1=81=D0=
+=BE=D1=85=D1=80=D0=B0=D0=BD=D1=8F=D0=B9=D1=82=D0=B5 =D0=BE=D1=82=D0=B4=D0=
+=B5=D0=BB=D1=8C=D0=BD=D0=BE.</p>
+      </div>
+      <div class=3D"tabs">
+        <button class=3D"tab active" id=3D"tariff-tab-apt">=F0=9F=8F=A2 =D0=
+=9A=D0=B2=D0=B0=D1=80=D1=82=D0=B8=D1=80=D0=B0</button>
+        <button class=3D"tab" id=3D"tariff-tab-house">=F0=9F=8F=A1 =D0=A7=
+=D0=B0=D1=81=D1=82=D0=BD=D1=8B=D0=B9 =D0=B4=D0=BE=D0=BC</button>
+      </div>
+      <div id=3D"tariffs-form"></div>
+      <button class=3D"btn btn-primary" style=3D"width:100%">=F0=9F=92=BE =
+=D0=A1=D0=BE=D1=85=D1=80=D0=B0=D0=BD=D0=B8=D1=82=D1=8C =D1=82=D0=B0=D1=80=
+=D0=B8=D1=84=D1=8B</button>
+      <div style=3D"height:8px"></div>
+    </div>
+  </div>
+
+  <!-- NAV -->
+  <nav class=3D"nav" style=3D"display: none;">
+    <button class=3D"nav-btn active" data-screen=3D"home"><span class=3D"na=
+v-icon">=F0=9F=8F=A0</span><span>=D0=9A=D0=B2=D0=B0=D1=80=D1=82=D0=B8=D1=80=
+=D1=8B</span></button>
+    <button class=3D"nav-btn" data-screen=3D"calc"><span class=3D"nav-icon"=
+>=F0=9F=92=A1</span><span>=D0=A0=D0=B0=D1=81=D1=87=D1=91=D1=82</span></butt=
+on>
+    <button class=3D"nav-btn" data-screen=3D"history"><span class=3D"nav-ic=
+on">=F0=9F=93=8B</span><span>=D0=98=D1=81=D1=82=D0=BE=D1=80=D0=B8=D1=8F</sp=
+an></button>
+    <button class=3D"nav-btn" data-screen=3D"settings"><span class=3D"nav-i=
+con">=E2=9A=99=EF=B8=8F</span><span>=D0=A2=D0=B0=D1=80=D0=B8=D1=84=D1=8B</s=
+pan></button>
+  </nav>
+  <div class=3D"toast" id=3D"toast"></div>
+
+  <!-- SHEET: APT -->
+  <div class=3D"sheet-overlay" id=3D"sheet-apt">
+    <div class=3D"sheet">
+      <div class=3D"sheet-handle"></div>
+      <div class=3D"sheet-title" id=3D"apt-sheet-title">=D0=9D=D0=BE=D0=B2=
+=D0=B0=D1=8F =D0=BA=D0=B2=D0=B0=D1=80=D1=82=D0=B8=D1=80=D0=B0</div>
+      <div class=3D"input-group">
+        <label class=3D"input-label">=D0=90=D0=B4=D1=80=D0=B5=D1=81</label>
+        <input class=3D"input" id=3D"apt-addr-input" placeholder=3D"=D1=83=
+=D0=BB. =D0=9B=D0=B5=D0=BD=D0=B8=D0=BD=D0=B0, =D0=B4.5, =D0=BA=D0=B2.12">
+      </div>
+      <div class=3D"input-group">
+        <label class=3D"input-label">=D0=9A=D0=BE=D0=BB-=D0=B2=D0=BE =D0=B6=
+=D0=B8=D0=BB=D1=8C=D1=86=D0=BE=D0=B2</label>
+        <input class=3D"input" id=3D"apt-people-input" type=3D"number" min=
+=3D"1" max=3D"20" placeholder=3D"2">
+      </div>
+      <div class=3D"input-group">
+        <label class=3D"input-label">=D0=A2=D0=B8=D0=BF =D0=BE=D0=B1=D1=8A=
+=D0=B5=D0=BA=D1=82=D0=B0</label>
+        <div class=3D"chip-row">
+          <button class=3D"chip active" id=3D"type-apt">=F0=9F=8F=A2 =D0=9A=
+=D0=B2=D0=B0=D1=80=D1=82=D0=B8=D1=80=D0=B0</button>
+          <button class=3D"chip" id=3D"type-house">=F0=9F=8F=A1 =D0=A7=D0=
+=B0=D1=81=D1=82=D0=BD=D1=8B=D0=B9 =D0=B4=D0=BE=D0=BC</button>
+        </div>
+      </div>
+      <div style=3D"font-size:0.75rem;font-weight:700;color:var(--text-hint=
+);text-transform:uppercase;letter-spacing:0.08em;margin:16px 0 10px">=D0=A3=
+=D1=81=D0=BB=D1=83=D0=B3=D0=B8</div>
+      <div style=3D"display:grid;grid-template-columns:1fr 1fr;gap:8px;marg=
+in-bottom:16px">
+        <label style=3D"display:flex;align-items:center;gap:8px;padding:10p=
+x 12px;background:var(--bg);border-radius:10px;cursor:pointer">
+          <input type=3D"checkbox" id=3D"svc-gas" style=3D"width:20px;heigh=
+t:20px;cursor:pointer"> <span>=E2=9B=BD =D0=93=D0=B0=D0=B7</span>
+        </label>
+        <label style=3D"display:flex;align-items:center;gap:8px;padding:10p=
+x 12px;background:var(--bg);border-radius:10px;cursor:pointer">
+          <input type=3D"checkbox" id=3D"svc-water" style=3D"width:20px;hei=
+ght:20px;cursor:pointer"> <span>=F0=9F=92=A7 =D0=92=D0=BE=D0=B4=D0=B0</span=
+>
+        </label>
+        <label style=3D"display:flex;align-items:center;gap:8px;padding:10p=
+x 12px;background:var(--bg);border-radius:10px;cursor:pointer">
+          <input type=3D"checkbox" id=3D"svc-electric" style=3D"width:20px;=
+height:20px;cursor:pointer"> <span>=E2=9A=A1 =D0=A1=D0=B2=D0=B5=D1=82</span=
+>
+        </label>
+        <label style=3D"display:flex;align-items:center;gap:8px;padding:10p=
+x 12px;background:var(--bg);border-radius:10px;cursor:pointer">
+          <input type=3D"checkbox" id=3D"svc-trash" style=3D"width:20px;hei=
+ght:20px;cursor:pointer"> <span>=F0=9F=97=91=EF=B8=8F =D0=A2=D0=91=D0=9E</s=
+pan>
+        </label>
+        <label style=3D"display:flex;align-items:center;gap:8px;padding:10p=
+x 12px;background:var(--bg);border-radius:10px;cursor:pointer">
+          <input type=3D"checkbox" id=3D"svc-heat" style=3D"width:20px;heig=
+ht:20px;cursor:pointer"> <span>=F0=9F=94=A5 =D0=A2=D0=B5=D0=BF=D0=BB=D0=BE<=
+/span>
+        </label>
+        <label style=3D"display:flex;align-items:center;gap:8px;padding:10p=
+x 12px;background:var(--bg);border-radius:10px;cursor:pointer">
+          <input type=3D"checkbox" id=3D"svc-zhek" style=3D"width:20px;heig=
+ht:20px;cursor:pointer"> <span>=F0=9F=8F=A2 =D0=96=D0=AD=D0=9A</span>
+        </label>
+      </div>
+      <div style=3D"font-size:0.75rem;font-weight:700;color:var(--text-hint=
+);text-transform:uppercase;letter-spacing:0.08em;margin:16px 0 10px">=D0=9B=
+=D0=B8=D1=86=D0=B5=D0=B2=D1=8B=D0=B5 =D1=81=D1=87=D0=B5=D1=82=D0=B0</div>
+      <div class=3D"input-group">
+        <label class=3D"input-label">=E2=9B=BD =D0=93=D0=B0=D0=B7</label>
+        <input class=3D"input" id=3D"acc-gas" placeholder=3D"=D0=9D=D0=BE=
+=D0=BC=D0=B5=D1=80 =D1=81=D1=87=D1=91=D1=82=D0=B0" style=3D"font-family:mon=
+ospace;margin-bottom:6px">
+        <input class=3D"input" id=3D"acc-gas-org" placeholder=3D"=D0=9D=D0=
+=B0=D0=B7=D0=B2=D0=B0=D0=BD=D0=B8=D0=B5 =D0=BE=D1=80=D0=B3=D0=B0=D0=BD=D0=
+=B8=D0=B7=D0=B0=D1=86=D0=B8=D0=B8" style=3D"font-size:0.95rem">
+      </div>
+      <div class=3D"input-group">
+        <label class=3D"input-label">=F0=9F=92=A7 =D0=92=D0=BE=D0=B4=D0=B0<=
+/label>
+        <input class=3D"input" id=3D"acc-water" placeholder=3D"=D0=9D=D0=BE=
+=D0=BC=D0=B5=D1=80 =D1=81=D1=87=D1=91=D1=82=D0=B0" style=3D"font-family:mon=
+ospace;margin-bottom:6px">
+        <input class=3D"input" id=3D"acc-water-org" placeholder=3D"=D0=9D=
+=D0=B0=D0=B7=D0=B2=D0=B0=D0=BD=D0=B8=D0=B5 =D0=BE=D1=80=D0=B3=D0=B0=D0=BD=
+=D0=B8=D0=B7=D0=B0=D1=86=D0=B8=D0=B8" style=3D"font-size:0.95rem">
+      </div>
+      <div class=3D"input-group">
+        <label class=3D"input-label">=E2=9A=A1 =D0=AD=D0=BB=D0=B5=D0=BA=D1=
+=82=D1=80=D0=B8=D1=87=D0=B5=D1=81=D1=82=D0=B2=D0=BE</label>
+        <input class=3D"input" id=3D"acc-electric" placeholder=3D"=D0=9D=D0=
+=BE=D0=BC=D0=B5=D1=80 =D1=81=D1=87=D1=91=D1=82=D0=B0" style=3D"font-family:=
+monospace;margin-bottom:6px">
+        <input class=3D"input" id=3D"acc-electric-org" placeholder=3D"=D0=
+=9D=D0=B0=D0=B7=D0=B2=D0=B0=D0=BD=D0=B8=D0=B5 =D0=BE=D1=80=D0=B3=D0=B0=D0=
+=BD=D0=B8=D0=B7=D0=B0=D1=86=D0=B8=D0=B8" style=3D"font-size:0.95rem">
+      </div>
+      <div class=3D"input-group">
+        <label class=3D"input-label">=F0=9F=97=91=EF=B8=8F =D0=A2=D0=91=D0=
+=9E</label>
+        <input class=3D"input" id=3D"acc-trash" placeholder=3D"=D0=9D=D0=BE=
+=D0=BC=D0=B5=D1=80 =D1=81=D1=87=D1=91=D1=82=D0=B0" style=3D"font-family:mon=
+ospace;margin-bottom:6px">
+        <input class=3D"input" id=3D"acc-trash-org" placeholder=3D"=D0=9D=
+=D0=B0=D0=B7=D0=B2=D0=B0=D0=BD=D0=B8=D0=B5 =D0=BE=D1=80=D0=B3=D0=B0=D0=BD=
+=D0=B8=D0=B7=D0=B0=D1=86=D0=B8=D0=B8" style=3D"font-size:0.95rem">
+      </div>
+      <div class=3D"input-group">
+        <label class=3D"input-label">=F0=9F=8F=A2 =D0=96=D0=AD=D0=9A / =D0=
+=A3=D0=BF=D1=80=D0=B0=D0=B2=D0=BB=D1=8F=D1=8E=D1=89=D0=B0=D1=8F =D0=BA=D0=
+=BE=D0=BC=D0=BF=D0=B0=D0=BD=D0=B8=D1=8F</label>
+        <input class=3D"input" id=3D"acc-zhek-org" placeholder=3D"=D0=9D=D0=
+=B0=D0=B7=D0=B2=D0=B0=D0=BD=D0=B8=D0=B5 =D0=96=D0=AD=D0=9A / =D0=A3=D0=9A" =
+style=3D"margin-bottom:6px">
+        <input class=3D"input" id=3D"acc-zhek" placeholder=3D"=D0=9B=D0=B8=
+=D1=86=D0=B5=D0=B2=D0=BE=D0=B9 =D1=81=D1=87=D1=91=D1=82" style=3D"font-fami=
+ly:monospace">
+      </div>
+      <div class=3D"input-group">
+        <label class=3D"input-label">=F0=9F=94=A5 =D0=A2=D0=B5=D0=BF=D0=BB=
+=D0=BE</label>
+        <input class=3D"input" id=3D"acc-heat-org" placeholder=3D"=D0=9D=D0=
+=B0=D0=B7=D0=B2=D0=B0=D0=BD=D0=B8=D0=B5 =D0=BE=D1=80=D0=B3=D0=B0=D0=BD=D0=
+=B8=D0=B7=D0=B0=D1=86=D0=B8=D0=B8" style=3D"margin-bottom:6px">
+        <input class=3D"input" id=3D"acc-heat" placeholder=3D"=D0=9B=D0=B8=
+=D1=86=D0=B5=D0=B2=D0=BE=D0=B9 =D1=81=D1=87=D1=91=D1=82" style=3D"font-fami=
+ly:monospace">
+      </div>
+      <div style=3D"display:flex;gap:10px;margin-top:6px">
+        <button class=3D"btn btn-ghost" style=3D"flex:1">=D0=9E=D1=82=D0=BC=
+=D0=B5=D0=BD=D0=B0</button>
+        <button class=3D"btn btn-primary" style=3D"flex:2">=D0=A1=D0=BE=D1=
+=85=D1=80=D0=B0=D0=BD=D0=B8=D1=82=D1=8C</button>
+      </div>
+      <div id=3D"apt-delete-btn" style=3D"display:none;margin-top:10px">
+        <button class=3D"btn btn-danger" style=3D"width:100%">=F0=9F=97=91=
+=EF=B8=8F =D0=A3=D0=B4=D0=B0=D0=BB=D0=B8=D1=82=D1=8C =D0=BA=D0=B2=D0=B0=D1=
+=80=D1=82=D0=B8=D1=80=D1=83</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- SHEET: SELECT APT -->
+  <div class=3D"sheet-overlay" id=3D"sheet-select-apt">
+    <div class=3D"sheet">
+      <div class=3D"sheet-handle"></div>
+      <div class=3D"sheet-title">=D0=92=D1=8B=D0=B1=D0=B5=D1=80=D0=B8=D1=82=
+=D0=B5 =D0=BE=D0=B1=D1=8A=D0=B5=D0=BA=D1=82</div>
+      <div id=3D"apt-select-list"></div>
+      <button class=3D"btn btn-ghost" style=3D"width:100%;margin-top:8px">=
+=D0=97=D0=B0=D0=BA=D1=80=D1=8B=D1=82=D1=8C</button>
+    </div>
+  </div>
+
+  <!-- SHEET: VOICE -->
+  <div class=3D"sheet-overlay" id=3D"sheet-voice">
+    <div class=3D"sheet">
+      <div class=3D"sheet-handle"></div>
+      <div class=3D"sheet-title" id=3D"voice-sheet-title">=F0=9F=8E=A4 =D0=
+=93=D0=BE=D0=BB=D0=BE=D1=81=D0=BE=D0=B2=D0=BE=D0=B9 =D0=B2=D0=B2=D0=BE=D0=
+=B4</div>
+      <p style=3D"color:var(--text-muted);font-size:0.9rem;margin-bottom:20=
+px" id=3D"voice-sheet-hint">=D0=9D=D0=B0=D0=B6=D0=BC=D0=B8=D1=82=D0=B5 =D0=
+=B8 =D0=BD=D0=B0=D0=B7=D0=BE=D0=B2=D0=B8=D1=82=D0=B5 =D1=87=D0=B8=D1=81=D0=
+=BB=D0=BE</p>
+      <button class=3D"voice-btn" id=3D"voice-btn">=F0=9F=8E=A4</button>
+      <div style=3D"text-align:center;margin-top:16px;min-height:60px">
+        <div style=3D"font-size:2.5rem;font-weight:800;color:var(--primary)=
+" id=3D"voice-number"></div>
+        <div style=3D"font-size:0.9rem;color:var(--text-muted);margin-top:4=
+px" id=3D"voice-status">=D0=9D=D0=B0=D0=B6=D0=BC=D0=B8=D1=82=D0=B5 =D0=B4=
+=D0=BB=D1=8F =D0=B7=D0=B0=D0=BF=D0=B8=D1=81=D0=B8</div>
+      </div>
+      <div style=3D"display:none;gap:10px;margin-top:16px" id=3D"voice-acti=
+ons">
+        <button class=3D"btn btn-ghost" style=3D"flex:1">=D0=9F=D0=BE=D0=B2=
+=D1=82=D0=BE=D1=80=D0=B8=D1=82=D1=8C</button>
+        <button class=3D"btn btn-primary" style=3D"flex:2">=E2=9C=93 =D0=9F=
+=D1=80=D0=B8=D0=BC=D0=B5=D0=BD=D0=B8=D1=82=D1=8C</button>
+      </div>
+      <button class=3D"btn btn-ghost" style=3D"width:100%;margin-top:10px">=
+=D0=97=D0=B0=D0=BA=D1=80=D1=8B=D1=82=D1=8C</button>
+    </div>
+  </div>
+
+  <!-- SHEET: CONFIRM SAVE -->
+  <div class=3D"sheet-overlay" id=3D"sheet-confirm-save">
+    <div class=3D"sheet">
+      <div class=3D"sheet-handle"></div>
+      <div class=3D"sheet-title">=D0=A1=D0=BE=D1=85=D1=80=D0=B0=D0=BD=D0=B8=
+=D1=82=D1=8C =D1=80=D0=B0=D1=81=D1=87=D1=91=D1=82?</div>
+      <div id=3D"confirm-save-body"></div>
+      <div style=3D"display:flex;gap:10px;margin-top:6px">
+        <button class=3D"btn btn-ghost" style=3D"flex:1">=D0=9D=D0=B0=D0=B7=
+=D0=B0=D0=B4</button>
+        <button class=3D"btn btn-primary" style=3D"flex:2">=F0=9F=93=8B =D0=
+=A1=D0=BE=D1=85=D1=80=D0=B0=D0=BD=D0=B8=D1=82=D1=8C</button>
+      </div>
+    </div>
+  </div>
+
+</div>
+
+
+
+
+</body></html>
+------MultipartBoundary--tWHcrelTOuavqSihbfpi9JMA0tvxWhxKOnDBHZjH7V----
+Content-Type: text/css
+Content-Transfer-Encoding: quoted-printable
+Content-Location: cid:css-35efd209-9bad-4589-b2d3-823b62726a80@mhtml.blink
+
+@charset "utf-8";
+
+:root { --primary: #1A6B3C; --primary-light: #E8F5EE; --primary-mid: #2E8B5=
+7; --danger: #C0392B; --danger-light: #FDEDEC; --text: #1a1a1a; --text-mute=
+d: #666; --text-hint: #999; --bg: #F5F5F0; --card: #FFFFFF; --border: #E0E0=
+D8; --border-strong: #C8C8C0; --radius: 16px; --radius-sm: 10px; --shadow: =
+0 2px 12px rgba(0,0,0,0.08); --font: 'Segoe UI', system-ui, -apple-system, =
+sans-serif; }
+
+@media (prefers-color-scheme: dark) {
+  :root { --primary: #3EAA6A; --primary-light: #0D2E1C; --primary-mid: #3EA=
+A6A; --danger: #E74C3C; --danger-light: #2C0E0C; --text: #ECECEC; --text-mu=
+ted: #AAA; --text-hint: #777; --bg: #121212; --card: #1E1E1E; --border: #2E=
+2E2E; --border-strong: #444; --shadow: 0 2px 12px rgba(0,0,0,0.3); }
+}
+
+* { box-sizing: border-box; margin: 0px; padding: 0px; -webkit-tap-highligh=
+t-color: transparent; }
+
+input[type=3D"number"]::-webkit-inner-spin-button, input[type=3D"number"]::=
+-webkit-outer-spin-button { appearance: none; margin: 0px; }
+
+input[type=3D"number"] { }
+
+html { font-size: 18px; }
+
+body { font-family: var(--font); background: var(--bg); color: var(--text);=
+ min-height: 100dvh; }
+
+.app { max-width: 480px; margin: 0px auto; min-height: 100dvh; position: re=
+lative; }
+
+.screen { display: none; flex-direction: column; min-height: 100dvh; paddin=
+g-bottom: calc(80px + env(safe-area-inset-bottom)); }
+
+.screen.active { display: flex; }
+
+.top-bar { padding: calc(20px + env(safe-area-inset-top)) calc(16px + env(s=
+afe-area-inset-right)) 12px calc(16px + env(safe-area-inset-left)); display=
+: flex; align-items: center; gap: 10px; }
+
+.top-bar h1 { font-size: 1.4rem; font-weight: 700; flex: 1 1 0%; }
+
+.content { flex: 1 1 0%; padding: 0 calc(16px + env(safe-area-inset-right))=
+ 0 calc(16px + env(safe-area-inset-left)); }
+
+.nav { position: fixed; bottom: 0px; left: 50%; transform: translateX(-50%)=
+; width: 100%; max-width: 480px; background: var(--card); border-top: 1px s=
+olid var(--border); display: flex; z-index: 100; padding-bottom: env(safe-a=
+rea-inset-bottom); }
+
+.nav-btn { flex: 1 1 0%; display: flex; flex-direction: column; align-items=
+: center; justify-content: center; padding: 10px 4px 12px; gap: 3px; backgr=
+ound: none; border-width: medium; border-style: none; border-color: current=
+color; border-image: initial; cursor: pointer; color: var(--text-hint); fon=
+t-size: 0.62rem; font-family: var(--font); transition: color 0.15s; }
+
+.nav-btn.active { color: var(--primary); }
+
+.nav-icon { font-size: 1.4rem; line-height: 1; }
+
+.card { background: var(--card); border: 1px solid var(--border); border-ra=
+dius: var(--radius); padding: 16px; margin-bottom: 12px; box-shadow: var(--=
+shadow); }
+
+.card-title { font-size: 1.05rem; font-weight: 700; }
+
+.btn { display: flex; align-items: center; justify-content: center; gap: 8p=
+x; padding: 15px 18px; border-radius: var(--radius-sm); border-width: mediu=
+m; border-style: none; border-color: currentcolor; border-image: initial; c=
+ursor: pointer; font-family: var(--font); font-size: 1rem; font-weight: 600=
+; transition: 0.15s; }
+
+.btn:active { transform: scale(0.97); }
+
+.btn-primary { background: var(--primary); color: white; }
+
+.btn-primary:hover { background: var(--primary-mid); }
+
+.btn-secondary { background: var(--primary-light); color: var(--primary); }
+
+.btn-danger { background: var(--danger-light); color: var(--danger); }
+
+.btn-ghost { background: transparent; color: var(--text-muted); border: 1px=
+ solid var(--border-strong); }
+
+.btn-sm { padding: 10px 14px; font-size: 0.85rem; border-radius: 8px; }
+
+.btn-icon { width: 44px; height: 44px; padding: 0px; border-radius: 10px; f=
+ont-size: 1.2rem; flex-shrink: 0; }
+
+.btn-mic { width: 40px; height: 40px; padding: 0px; border-radius: 8px; fon=
+t-size: 1rem; flex-shrink: 0; background: var(--primary-light); color: var(=
+--primary); border-width: medium; border-style: none; border-color: current=
+color; border-image: initial; cursor: pointer; display: flex; align-items: =
+center; justify-content: center; }
+
+.btn-mic:active { transform: scale(0.95); }
+
+.input-group { margin-bottom: 14px; }
+
+.input-label { font-size: 0.75rem; font-weight: 700; color: var(--text-mute=
+d); text-transform: uppercase; letter-spacing: 0.05em; margin-bottom: 6px; =
+display: block; }
+
+.input { width: 100%; padding: 14px 16px; border: 2px solid var(--border); =
+border-radius: var(--radius-sm); font-size: 1.05rem; font-family: var(--fon=
+t); background: var(--card); color: var(--text); transition: border-color 0=
+.15s; }
+
+.input:focus { outline: none; border-color: var(--primary); }
+
+.chip-row { display: flex; gap: 8px; flex-wrap: wrap; }
+
+.chip { padding: 9px 16px; border-radius: 20px; border: 2px solid var(--bor=
+der); background: var(--card); color: var(--text); font-size: 0.9rem; font-=
+weight: 600; cursor: pointer; font-family: var(--font); transition: 0.15s; =
+}
+
+.chip.active { border-color: var(--primary); background: var(--primary-ligh=
+t); color: var(--primary); }
+
+.tabs { display: flex; background: var(--bg); border-radius: 12px; padding:=
+ 4px; gap: 4px; margin-bottom: 14px; }
+
+.tab { flex: 1 1 0%; padding: 10px 6px; border-width: medium; border-style:=
+ none; border-color: currentcolor; border-image: initial; background: none;=
+ border-radius: 9px; font-family: var(--font); font-size: 0.85rem; font-wei=
+ght: 600; cursor: pointer; color: var(--text-muted); transition: 0.15s; }
+
+.tab.active { background: var(--card); color: var(--text); box-shadow: rgba=
+(0, 0, 0, 0.1) 0px 1px 4px; }
+
+.sheet-overlay { position: fixed; inset: 0px; background: rgba(0, 0, 0, 0.5=
+); z-index: 200; display: none; align-items: flex-end; justify-content: cen=
+ter; }
+
+.sheet-overlay.open { display: flex; }
+
+.sheet { background: var(--card); border-radius: 24px 24px 0px 0px; padding=
+: 20px 16px calc(32px + env(safe-area-inset-bottom)); width: 100%; max-widt=
+h: 480px; max-height: 92dvh; overflow-y: auto; }
+
+.sheet-handle { width: 40px; height: 4px; background: var(--border-strong);=
+ border-radius: 2px; margin: 0px auto 18px; }
+
+.sheet-title { font-size: 1.25rem; font-weight: 800; margin-bottom: 18px; }
+
+.apt-card { cursor: pointer; transition: border-color 0.15s; }
+
+.apt-card:hover { border-color: var(--primary); }
+
+.accounts-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 8px; m=
+argin-top: 12px; }
+
+.account-item { background: var(--bg); border-radius: 10px; padding: 10px 1=
+2px; }
+
+.account-label { font-size: 0.68rem; color: var(--text-muted); font-weight:=
+ 600; }
+
+.account-org { font-size: 0.72rem; color: var(--text-muted); margin-top: 2p=
+x; }
+
+.account-number { font-size: 0.88rem; font-weight: 700; margin-top: 2px; fo=
+nt-family: monospace; }
+
+.copy-btn { margin-top: 5px; background: none; border-width: medium; border=
+-style: none; border-color: currentcolor; border-image: initial; color: var=
+(--primary); font-size: 0.72rem; cursor: pointer; padding: 2px 0px; font-fa=
+mily: var(--font); font-weight: 600; }
+
+.service-icon { width: 40px; height: 40px; border-radius: 10px; display: fl=
+ex; align-items: center; justify-content: center; font-size: 1.3rem; flex-s=
+hrink: 0; }
+
+.total-bar { background: var(--primary); color: white; border-radius: var(-=
+-radius); padding: 16px 18px; display: flex; align-items: center; justify-c=
+ontent: space-between; margin: 14px 0px; }
+
+.total-label { font-size: 0.85rem; opacity: 0.8; }
+
+.total-amount { font-size: 1.7rem; font-weight: 800; }
+
+.voice-btn { width: 80px; height: 80px; border-radius: 50%; border: 3px sol=
+id var(--primary); background: var(--card); color: var(--primary); font-siz=
+e: 2rem; cursor: pointer; display: flex; align-items: center; justify-conte=
+nt: center; transition: 0.15s; margin: 0px auto; }
+
+.voice-btn.recording { background: var(--danger); border-color: var(--dange=
+r); color: white; animation: 1.2s ease-in-out 0s infinite normal none runni=
+ng pulse; }
+
+@keyframes pulse {=20
+  0%, 100% { box-shadow: rgba(192, 57, 43, 0.4) 0px 0px 0px 0px; }
+  50% { box-shadow: rgba(192, 57, 43, 0) 0px 0px 0px 12px; }
+}
+
+.tariff-row { display: grid; grid-template-columns: 1fr 140px; align-items:=
+ center; gap: 12px; margin-bottom: 10px; }
+
+.tariff-row .input { padding: 13px 12px; font-size: 1.05rem; text-align: ri=
+ght; }
+
+.tariff-label-text { font-size: 0.9rem; color: var(--text-muted); }
+
+.toast { position: fixed; top: calc(20px + env(safe-area-inset-top)); left:=
+ 50%; transform: translateX(-50%); background: var(--text); color: var(--ca=
+rd); padding: 12px 20px; border-radius: 12px; font-size: 0.9rem; font-weigh=
+t: 600; z-index: 500; opacity: 0; transition: opacity 0.3s; pointer-events:=
+ none; white-space: nowrap; }
+
+.toast.show { opacity: 1; }
+
+.empty-state { text-align: center; padding: 40px 20px; color: var(--text-mu=
+ted); }
+
+.empty-state .emoji { font-size: 3rem; margin-bottom: 12px; }
+
+.empty-state p { font-size: 0.95rem; line-height: 1.5; margin-bottom: 20px;=
+ }
+
+.apt-selector-btn { width: 100%; display: flex; align-items: center; justif=
+y-content: space-between; background: var(--card); border: 1px solid var(--=
+border); border-radius: var(--radius-sm); padding: 14px 16px; margin-bottom=
+: 14px; cursor: pointer; font-family: var(--font); box-shadow: var(--shadow=
+); }
+
+.select-item { display: flex; align-items: center; gap: 12px; padding: 14px=
+ 0px; border-bottom: 1px solid var(--border); cursor: pointer; }
+
+.select-item:last-child { border-bottom-width: medium; border-bottom-style:=
+ none; border-bottom-color: currentcolor; }
+
+.select-check { width: 24px; height: 24px; border-radius: 50%; border: 2px =
+solid var(--border); flex-shrink: 0; display: flex; align-items: center; ju=
+stify-content: center; font-size: 0.8rem; }
+
+.select-item.active .select-check { background: var(--primary); border-colo=
+r: var(--primary); color: white; }
+
+.select-name { font-size: 1rem; font-weight: 600; }
+
+.select-meta { font-size: 0.8rem; color: var(--text-muted); }
+
+.field-row { display: flex; gap: 8px; align-items: flex-end; }
+
+.field-row .input-wrap { flex: 1 1 0%; }
+
+.rate-badge { display: inline-block; font-size: 0.72rem; color: var(--text-=
+hint); background: var(--bg); border-radius: 6px; padding: 2px 7px; margin-=
+left: 6px; }
+------MultipartBoundary--tWHcrelTOuavqSihbfpi9JMA0tvxWhxKOnDBHZjH7V------
